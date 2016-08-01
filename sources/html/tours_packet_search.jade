@@ -1,0 +1,244 @@
+include ./includes/mixins.jade
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title Document
+        meta(keywords="123435")
+        //- link(rel="stylesheet",
+        //-     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css",
+        //-     integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7",
+        //-     crossorigin="anonymous")
+        //- link(rel="stylesheet", href="./css/bootstrap.min.css")
+        link(rel="stylesheet", href="./css/css.min.css")
+        link(rel="stylesheet", href="./css/style.min.css")
+    body
+        .container.container--md.tours-search__container
+            header.tours-search__header
+                h4 Поиск туров
+            .tours-search__filters
+                form#filters_form.filters__form.form-horizontal.flex.flex-wrap.flex-main-between(action="#", method="GET")
+                    .col-str-100--to-md.col-fix-660--md
+                        .filters__main.flex.flex-wrap.flex-main-start--to-md.flex-main-between--md
+                            .col-fix-450--to-ssm.col-str-50--to-md.col-fix-351--md
+                                .filters__main-1
+                                    .form-group.no-h-margin.flex.flex-main-between
+                                        label.flex-item-std.flex-item-cross-center Город отправления
+                                        select.select--light.flex-item-big.flex-item-cross-end.mawn--to-sm
+                                            option(value="1") Москва
+                                            option(value="2") Санкт Петербург
+                                            option(value="3") Волгоград
+                                    .form-group.no-h-margin.flex.flex-main-between
+                                        label.flex-item-std.flex-item-cross-center Страна
+                                        select.select--light.flex-item-big.flex-item-cross-center.mawn--to-sm
+                                            option(value="1") Болгария
+                                            option(value="2") Румыния
+                                            option(value="3") Черногория
+                                    .form-group.no-h-margin.flex.flex-main-between
+                                        label.flex-item-std.flex-item-cross-center Тур
+                                        select.select--light.flex-item-big.flex-item-cross-center.mawn--to-sm
+                                            option(value="1") Все туры
+                                            option(value="2") Тур 1
+                                            option(value="3") Тур 3424234234
+                                    .form-group.no-h-margin.flex.flex-main-between
+                                        label.flex-item-std.flex-item-cross-center Тариф
+                                        select.select--light.flex-item-big.flex-item-cross-center.mawn--to-sm
+                                            option(value="1") Все тарифы
+                                            option(value="2") Тариф 1
+                                            option(value="3") Тариф 3424234234
+                            .col-fix-450--to-ssm.col-fix-309
+                                .filters__main-2
+                                    .form-group.no-h-margin.flex.flex-main-between.mt7.mb17
+                                        label.flex-item-std.flex-item-cross-center Дата вылета
+                                        span.calendar(data-departure-date="", data-departure-type="to") 28.09.05
+                                        span.divider.flex-item-cross-center —
+                                        span.calendar(data-departure-date="", data-departure-type="from") 28.09.15
+                                    .form-group.no-h-margin.flex.flex-main-between
+                                        label.flex-item-std.flex-item-cross-center Период
+                                        select.select--light.select--small
+                                            option(value="2") 2
+                                            option(value="1") 1
+                                            option(value="3") 3
+                                        span.divider.flex-item-cross-center —
+                                        select.select--light.select--small
+                                            option(value="8") 8
+                                            option(value="9") 9
+                                            option(value="10") 10
+                                    .form-group.no-h-margin.flex.flex-main-start
+                                        label.flex-grow-1--to-ssm.flex-item-md.flex-item-cross-center Взрослых
+                                        select.select--light.select--small
+                                            option(value="2") 2
+                                            option(value="1") 1
+                                            option(value="3") 3
+                                    .form-group.no-h-margin.flex.flex-main-start
+                                        label.flex-grow-1--to-ssm.flex-item-md.flex-item-cross-center Детей
+                                        select.select--light.select--small
+                                            option(value="0") 0
+                                            option(value="1") 1
+                                            option(value="2") 2
+                        .filters__additional.flex.flex-wrap.flex-main-start--to-md.flex-main-between--md
+                            .col-fix-450--to-ssm.col-str-50--to-md.col-fix-351--md
+                                .filters__additional-1.flex.flex-main-between
+                                    fieldset.col-str-50--to-sm.col-fix-187--to-md.col-fix-145--md
+                                        legend Город
+                                        +wrapped_checkbox('Ахелой', 'city_1')
+                                        +wrapped_checkbox('Бургас', 'city_2')
+                                        +wrapped_checkbox('Елените', 'city_3')
+                                        +wrapped_checkbox('Золотые', 'city_4')
+                                        +wrapped_checkbox('Пески', 'city_13')
+                                        +wrapped_checkbox('Несебыр', 'city_5')
+                                        +wrapped_checkbox('Обзор', 'city_6')
+                                        +wrapped_checkbox('Поморие', 'city_7')
+                                        +wrapped_checkbox('Равда', 'city_8')
+                                        +wrapped_checkbox('Св.Константин', 'city_9')
+                                        +wrapped_checkbox('Святой Влас', 'city_10')
+                                        +wrapped_checkbox('Солнечный берег', 'city_11')
+                                        +wrapped_checkbox('Sozopol', 'city_12')
+                                    fieldset.col-str-50--to-sm.col-fix-187--to-md.col-fix-145--md
+                                        legend Опции
+                                        +wrapped_checkbox('Активный', 'option_1')
+                                        +wrapped_checkbox('Для пар', 'option_2')
+                                        +wrapped_checkbox('Молодежный', 'option_3')
+                                        +wrapped_checkbox('Оздоровительные программы', 'option_4')
+                                        +wrapped_checkbox('Рекомендуем', 'option_5')
+                                        +wrapped_checkbox('Семейный', 'option_6')
+                                        +wrapped_checkbox('Только для совершеннолетних', 'option_7')
+                                        +wrapped_checkbox('Экономичный', 'option_8')
+                                        +wrapped_checkbox('VIP', 'option_9')
+                            .col-fix-450--to-ssm.col-fix-309
+                                .filters__results.important-block--rounded
+                                    h4.filters-results__header Отель (
+                                        span.filters-results__count 158
+                                        |)
+                                    +wrapped_input('Фильтр по названию', 'filters-results__filter', 'filters-results__filter')
+                                    //- input#filters-results__filter.filters-results__filter.input--light(type="text")
+                                    //- label.addictive-label(for="filters-results__filter") Фильтр по названию
+                                    button.filters-results__show-selected
+                                    span.filters-results__selected-count 0
+                                    .filters-results__inner-content.scroll-pane
+                                        ul.filters-results__list
+                                            li
+                                                +wrapped_checkbox('Aqua', 'result_1')
+                                            li
+                                                +wrapped_checkbox('Azur', 'result_2')
+                                            li
+                                                +wrapped_checkbox('Aquamarine', 'result_3')
+                                            li
+                                                +wrapped_checkbox('ApartcomplexArdaAstoria', 'result_4')
+                                            li
+                                                +wrapped_checkbox('Beach', 'result_5')
+                                            li
+                                                +wrapped_checkbox('AtriumBarcelo', 'result_6')
+                                            li
+                                                +wrapped_checkbox('Royal BeachBellevu', 'result_7')
+                                            li
+                                                +wrapped_checkbox('Berlin Golden', 'result_8')
+                                            li
+                                                +wrapped_checkbox('BeachBerlin Greek Park', 'result_9')
+                                            li
+                                                +wrapped_checkbox('Test 1', 'result_10')
+                                            li
+                                                +wrapped_checkbox('Test 2', 'result_11')
+                            .col-str-50--to-md.col-fix-351--md
+                                .filters__additional-2
+                                    fieldset
+                                        legend Категория
+                                        .flex.flex-main-start
+                                            +wrapped_checkbox('HV1', 'category_1')
+                                            +wrapped_checkbox('5*', 'category_2')
+                                            +wrapped_checkbox('4*', 'category_3')
+                                            +wrapped_checkbox('3*', 'category_4')
+                                            +wrapped_checkbox('2*', 'category_5')
+                            .col-fix-309.flex.flex-cross-end
+                                .filters__additional-3
+                                    +wrapped_checkbox('Мгновенное подтверждение', 'additional_option_1')
+                                    +wrapped_checkbox('Нет остановки продаж', 'additional_option_2')
+                            .col-str-50--to-md.col-fix-351--md
+                                .filters__additional-4
+                                    fieldset
+                                        legend Питание
+                                        .flex.flex-main-start
+                                            +wrapped_checkbox('AI', 'meal_1')
+                                            +wrapped_checkbox('BB*', 'meal_2')
+                                            +wrapped_checkbox('FB*', 'meal_3')
+                                            +wrapped_checkbox('HB*', 'meal_4')
+                                            +wrapped_checkbox('RO*', 'meal_5')
+                            .col-fix-309.flex
+                                .filters__additional-5.flex.flex-main-between.flex-item-cross-end.full-width
+                                    label Валюта
+                                    +wrapped_radio('RUR', 'id_currency_1', 'currency', '1')
+                                    +wrapped_radio('В валюте тура', 'id_currency_2', 'currency', '2', true)
+                                    
+                    .col-str-100--to-md.col-fix-240--md.flex.flex-main-start
+                        .filters__further.flex.flex-main-between--to-md.flex-column--to-xss.flex-column--md.full-width
+                            //- .filters__additional.border-bottom--light
+                            .filters__further-1.flex-grow-1--md.flex--to-md.flex-wrap--to-md.flex-main-between--to-md.flex-column--to-ssm
+                                fieldset.filters__services.col-str-75--to-xss.miw200--to-md
+                                    legend.mb18 Класс обслуживания
+                                    .bounded-selects.flex.flex-column.mr20--to-md
+                                        select.select--light
+                                            option(value="1") Эконом
+                                            option(value="2") Эконом +
+                                            option(value="3") Бизнес
+                                        button.bounded-selects__bound
+                                        select.select--light
+                                            option(value="1") Эконом
+                                            option(value="2") Эконом +
+                                            option(value="3") Бизнес
+                                fieldset.filters__airlines.miw200--to-md
+                                    legend Авиакомпании
+                                    +wrapped_checkbox('Северный Ветер', 'avia_1')
+                                fieldset.filters__seat-availability.col-str-75--to-xss.miw260--to-md
+                                    legend Наличие мест на авиарейсы
+                                    .flex.flex-main-between
+                                        +wrapped_checkbox('В наличии', 'avia_tickets_1')
+                                        +wrapped_checkbox('По запросу', 'avia_tickets_2')
+                                fieldset.miw200--to-md
+                                    legend Пересадки
+                                    +wrapped_checkbox('Только прямые рейсы', 'transfer_1', true)
+
+                            .filters__accept-filters.flex-item-cross-end--to-md
+                                .btn#accept-button.btn--v3 Найти тур
+                    
+            .tours-search__results
+                header.search-results__header Показываются только первые 300 позиций
+                .search-results__data.table-responsive
+                    table.search-results__data-table
+                        thead
+                            tr
+                                th Вылет
+                                th Тур
+                                th Ночь
+                                th Отель
+                                th Номер разм.
+                                th Пит.
+                                th Ещё
+                                th Перелет
+                                th.th--darken Цена
+                                th.th--darken.text-right.search-results__filter-table
+                                    span.caret
+                        tbody
+                            +table_row('10 762 315 ', '10 856 000 ', true)
+                            +table_row('110 000 ', '115 000 ', true)
+                            +table_row('10 762 315 ', '10 856 000 ', false)
+                            +table_row('110 000 ', '115 000 ', false)
+                            +table_row('10 762 315 ', '10 856 000 ', true)
+                            +table_row('110 000 ', '115 000 ', true)
+                            +table_row('10 762 315 ', '10 856 000 ', false, 'selected')
+                            +table_row('110 000 ', '115 000 ', false, 'selected')
+                            +table_row('10 762 315 ', '10 856 000 ', true)
+                            +table_row('110 000 ', '115 000 ', true)
+                            +table_row('110 000 ', '115 000 ', true) 
+
+                .search-results__bottom
+                    a.btn.btn--v4.full-width.search-results__show-more(href="#") Показать еще
+            
+        script(src="./js/jquery-2.2.4.min.js")
+        //- script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js",
+        //-     integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS",
+        //-     crossorigin="anonymous")
+        script(src="./js/bootstrap.min.js")
+        script(src="./js/jquery.jscrollpane.min.js")
+        script(src="./js/bowser.js")
+        script(src="./js/js.min.js")

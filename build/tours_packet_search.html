@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta keywords="123435">
+    <link rel="stylesheet" href="./css/css.min.css">
+    <link rel="stylesheet" href="./css/style.min.css">
+  </head>
+  <body>
+    <div class="container container--md tours-search__container">
+      <header class="tours-search__header">
+        <h4>Поиск туров</h4>
+      </header>
+      <div class="tours-search__filters">
+        <form id="filters_form" action="#" method="GET" class="filters__form form-horizontal flex flex-wrap flex-main-between">
+          <div class="col-str-100--to-md col-fix-660--md">
+            <div class="filters__main flex flex-wrap flex-main-start--to-md flex-main-between--md">
+              <div class="col-fix-450--to-ssm col-str-50--to-md col-fix-351--md">
+                <div class="filters__main-1">
+                  <div class="form-group no-h-margin flex flex-main-between">
+                    <label class="flex-item-std flex-item-cross-center">Город отправления</label>
+                    <select class="select--light flex-item-big flex-item-cross-end mawn--to-sm">
+                      <option value="1">Москва</option>
+                      <option value="2">Санкт Петербург</option>
+                      <option value="3">Волгоград</option>
+                    </select>
+                  </div>
+                  <div class="form-group no-h-margin flex flex-main-between">
+                    <label class="flex-item-std flex-item-cross-center">Страна</label>
+                    <select class="select--light flex-item-big flex-item-cross-center mawn--to-sm">
+                      <option value="1">Болгария</option>
+                      <option value="2">Румыния</option>
+                      <option value="3">Черногория</option>
+                    </select>
+                  </div>
+                  <div class="form-group no-h-margin flex flex-main-between">
+                    <label class="flex-item-std flex-item-cross-center">Тур</label>
+                    <select class="select--light flex-item-big flex-item-cross-center mawn--to-sm">
+                      <option value="1">Все туры</option>
+                      <option value="2">Тур 1</option>
+                      <option value="3">Тур 3424234234</option>
+                    </select>
+                  </div>
+                  <div class="form-group no-h-margin flex flex-main-between">
+                    <label class="flex-item-std flex-item-cross-center">Тариф</label>
+                    <select class="select--light flex-item-big flex-item-cross-center mawn--to-sm">
+                      <option value="1">Все тарифы</option>
+                      <option value="2">Тариф 1</option>
+                      <option value="3">Тариф 3424234234</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-fix-450--to-ssm col-fix-309">
+                <div class="filters__main-2">
+                  <div class="form-group no-h-margin flex flex-main-between mt7 mb17">
+                    <label class="flex-item-std flex-item-cross-center">Дата вылета</label><span data-departure-date="" data-departure-type="to" class="calendar">28.09.05</span><span class="divider flex-item-cross-center">—</span><span data-departure-date="" data-departure-type="from" class="calendar">28.09.15</span>
+                  </div>
+                  <div class="form-group no-h-margin flex flex-main-between">
+                    <label class="flex-item-std flex-item-cross-center">Период</label>
+                    <select class="select--light select--small">
+                      <option value="2">2</option>
+                      <option value="1">1</option>
+                      <option value="3">3</option>
+                    </select><span class="divider flex-item-cross-center">—</span>
+                    <select class="select--light select--small">
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div>
+                  <div class="form-group no-h-margin flex flex-main-start">
+                    <label class="flex-grow-1--to-ssm flex-item-md flex-item-cross-center">Взрослых</label>
+                    <select class="select--light select--small">
+                      <option value="2">2</option>
+                      <option value="1">1</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+                  <div class="form-group no-h-margin flex flex-main-start">
+                    <label class="flex-grow-1--to-ssm flex-item-md flex-item-cross-center">Детей</label>
+                    <select class="select--light select--small">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filters__additional flex flex-wrap flex-main-start--to-md flex-main-between--md">
+              <div class="col-fix-450--to-ssm col-str-50--to-md col-fix-351--md">
+                <div class="filters__additional-1 flex flex-main-between">
+                  <fieldset class="col-str-50--to-sm col-fix-187--to-md col-fix-145--md">
+                    <legend>Город</legend>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_1" type="checkbox" name=""/>
+                      <label for="city_1">Ахелой</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_2" type="checkbox" name=""/>
+                      <label for="city_2">Бургас</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_3" type="checkbox" name=""/>
+                      <label for="city_3">Елените</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_4" type="checkbox" name=""/>
+                      <label for="city_4">Золотые</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_13" type="checkbox" name=""/>
+                      <label for="city_13">Пески</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_5" type="checkbox" name=""/>
+                      <label for="city_5">Несебыр</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_6" type="checkbox" name=""/>
+                      <label for="city_6">Обзор</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_7" type="checkbox" name=""/>
+                      <label for="city_7">Поморие</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_8" type="checkbox" name=""/>
+                      <label for="city_8">Равда</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_9" type="checkbox" name=""/>
+                      <label for="city_9">Св.Константин</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_10" type="checkbox" name=""/>
+                      <label for="city_10">Святой Влас</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_11" type="checkbox" name=""/>
+                      <label for="city_11">Солнечный берег</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="city_12" type="checkbox" name=""/>
+                      <label for="city_12">Sozopol</label>
+                    </div>
+                  </fieldset>
+                  <fieldset class="col-str-50--to-sm col-fix-187--to-md col-fix-145--md">
+                    <legend>Опции</legend>
+                    <div class="wrapped-checkbox--light">
+                      <input id="option_1" type="checkbox" name=""/>
+                      <label for="option_1">Активный</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="option_2" type="checkbox" name=""/>
+                      <label for="option_2">Для пар</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="option_3" type="checkbox" name=""/>
+                      <label for="option_3">Молодежный</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="option_4" type="checkbox" name=""/>
+                      <label for="option_4">Оздоровительные программы</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="option_5" type="checkbox" name=""/>
+                      <label for="option_5">Рекомендуем</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="option_6" type="checkbox" name=""/>
+                      <label for="option_6">Семейный</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="option_7" type="checkbox" name=""/>
+                      <label for="option_7">Только для совершеннолетних</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="option_8" type="checkbox" name=""/>
+                      <label for="option_8">Экономичный</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="option_9" type="checkbox" name=""/>
+                      <label for="option_9">VIP</label>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="col-fix-450--to-ssm col-fix-309">
+                <div class="filters__results important-block--rounded">
+                  <h4 class="filters-results__header">Отель (<span class="filters-results__count">158</span>)</h4>
+                  <div class="wrapped-input--light">
+                    <input id="filters-results__filter" type="text" class="input--light filters-results__filter"/>
+                    <label for="filters-results__filter">Фильтр по названию</label>
+                  </div>
+                  <button class="filters-results__show-selected"></button><span class="filters-results__selected-count">0</span>
+                  <div class="filters-results__inner-content scroll-pane">
+                    <ul class="filters-results__list">
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_1" type="checkbox" name=""/>
+                          <label for="result_1">Aqua</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_2" type="checkbox" name=""/>
+                          <label for="result_2">Azur</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_3" type="checkbox" name=""/>
+                          <label for="result_3">Aquamarine</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_4" type="checkbox" name=""/>
+                          <label for="result_4">ApartcomplexArdaAstoria</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_5" type="checkbox" name=""/>
+                          <label for="result_5">Beach</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_6" type="checkbox" name=""/>
+                          <label for="result_6">AtriumBarcelo</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_7" type="checkbox" name=""/>
+                          <label for="result_7">Royal BeachBellevu</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_8" type="checkbox" name=""/>
+                          <label for="result_8">Berlin Golden</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_9" type="checkbox" name=""/>
+                          <label for="result_9">BeachBerlin Greek Park</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_10" type="checkbox" name=""/>
+                          <label for="result_10">Test 1</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="wrapped-checkbox--light">
+                          <input id="result_11" type="checkbox" name=""/>
+                          <label for="result_11">Test 2</label>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-str-50--to-md col-fix-351--md">
+                <div class="filters__additional-2">
+                  <fieldset>
+                    <legend>Категория</legend>
+                    <div class="flex flex-main-start">
+                      <div class="wrapped-checkbox--light">
+                        <input id="category_1" type="checkbox" name=""/>
+                        <label for="category_1">HV1</label>
+                      </div>
+                      <div class="wrapped-checkbox--light">
+                        <input id="category_2" type="checkbox" name=""/>
+                        <label for="category_2">5*</label>
+                      </div>
+                      <div class="wrapped-checkbox--light">
+                        <input id="category_3" type="checkbox" name=""/>
+                        <label for="category_3">4*</label>
+                      </div>
+                      <div class="wrapped-checkbox--light">
+                        <input id="category_4" type="checkbox" name=""/>
+                        <label for="category_4">3*</label>
+                      </div>
+                      <div class="wrapped-checkbox--light">
+                        <input id="category_5" type="checkbox" name=""/>
+                        <label for="category_5">2*</label>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="col-fix-309 flex flex-cross-end">
+                <div class="filters__additional-3">
+                  <div class="wrapped-checkbox--light">
+                    <input id="additional_option_1" type="checkbox" name=""/>
+                    <label for="additional_option_1">Мгновенное подтверждение</label>
+                  </div>
+                  <div class="wrapped-checkbox--light">
+                    <input id="additional_option_2" type="checkbox" name=""/>
+                    <label for="additional_option_2">Нет остановки продаж</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-str-50--to-md col-fix-351--md">
+                <div class="filters__additional-4">
+                  <fieldset>
+                    <legend>Питание</legend>
+                    <div class="flex flex-main-start">
+                      <div class="wrapped-checkbox--light">
+                        <input id="meal_1" type="checkbox" name=""/>
+                        <label for="meal_1">AI</label>
+                      </div>
+                      <div class="wrapped-checkbox--light">
+                        <input id="meal_2" type="checkbox" name=""/>
+                        <label for="meal_2">BB*</label>
+                      </div>
+                      <div class="wrapped-checkbox--light">
+                        <input id="meal_3" type="checkbox" name=""/>
+                        <label for="meal_3">FB*</label>
+                      </div>
+                      <div class="wrapped-checkbox--light">
+                        <input id="meal_4" type="checkbox" name=""/>
+                        <label for="meal_4">HB*</label>
+                      </div>
+                      <div class="wrapped-checkbox--light">
+                        <input id="meal_5" type="checkbox" name=""/>
+                        <label for="meal_5">RO*</label>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="col-fix-309 flex">
+                <div class="filters__additional-5 flex flex-main-between flex-item-cross-end full-width">
+                  <label>Валюта</label>
+                  <div class="wrapped-radio--light">
+                    <input id="id_currency_1" type="radio" name="currency" value="1"/>
+                    <label for="id_currency_1">RUR</label>
+                  </div>
+                  <div class="wrapped-radio--light">
+                    <input id="id_currency_2" type="radio" name="currency" value="2" checked="checked"/>
+                    <label for="id_currency_2">В валюте тура</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-str-100--to-md col-fix-240--md flex flex-main-start">
+            <div class="filters__further flex flex-main-between--to-md flex-column--to-xss flex-column--md full-width">
+              <div class="filters__further-1 flex-grow-1--md flex--to-md flex-wrap--to-md flex-main-between--to-md flex-column--to-ssm">
+                <fieldset class="filters__services col-str-75--to-xss miw200--to-md">
+                  <legend class="mb18">Класс обслуживания</legend>
+                  <div class="bounded-selects flex flex-column mr20--to-md">
+                    <select class="select--light">
+                      <option value="1">Эконом</option>
+                      <option value="2">Эконом +</option>
+                      <option value="3">Бизнес</option>
+                    </select>
+                    <button class="bounded-selects__bound"></button>
+                    <select class="select--light">
+                      <option value="1">Эконом</option>
+                      <option value="2">Эконом +</option>
+                      <option value="3">Бизнес</option>
+                    </select>
+                  </div>
+                </fieldset>
+                <fieldset class="filters__airlines miw200--to-md">
+                  <legend>Авиакомпании</legend>
+                  <div class="wrapped-checkbox--light">
+                    <input id="avia_1" type="checkbox" name=""/>
+                    <label for="avia_1">Северный Ветер</label>
+                  </div>
+                </fieldset>
+                <fieldset class="filters__seat-availability col-str-75--to-xss miw260--to-md">
+                  <legend>Наличие мест на авиарейсы</legend>
+                  <div class="flex flex-main-between">
+                    <div class="wrapped-checkbox--light">
+                      <input id="avia_tickets_1" type="checkbox" name=""/>
+                      <label for="avia_tickets_1">В наличии</label>
+                    </div>
+                    <div class="wrapped-checkbox--light">
+                      <input id="avia_tickets_2" type="checkbox" name=""/>
+                      <label for="avia_tickets_2">По запросу</label>
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset class="miw200--to-md">
+                  <legend>Пересадки</legend>
+                  <div class="wrapped-checkbox--light">
+                    <input id="transfer_1" type="checkbox" name="" checked="checked"/>
+                    <label for="transfer_1">Только прямые рейсы</label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="filters__accept-filters flex-item-cross-end--to-md">
+                <div id="accept-button" class="btn btn--v3">Найти тур</div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="tours-search__results">
+        <header class="search-results__header">Показываются только первые 300 позиций</header>
+        <div class="search-results__data table-responsive">
+          <table class="search-results__data-table">
+            <thead>
+              <tr>
+                <th>Вылет</th>
+                <th>Тур</th>
+                <th>Ночь</th>
+                <th>Отель</th>
+                <th>Номер разм.</th>
+                <th>Пит.</th>
+                <th>Ещё</th>
+                <th>Перелет</th>
+                <th class="th--darken">Цена</th>
+                <th class="th--darken text-right search-results__filter-table"><span class="caret"></span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options"><i class="custom-icon custom-icon--pig"></i><i class="custom-icon custom-icon--ball"></i>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">10 762 315 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">10 856 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options"><i class="custom-icon custom-icon--pig"></i><i class="custom-icon custom-icon--ball"></i>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">110 000 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">115 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options">
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">10 762 315 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">10 856 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options">
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">110 000 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">115 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options"><i class="custom-icon custom-icon--pig"></i><i class="custom-icon custom-icon--ball"></i>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">10 762 315 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">10 856 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options"><i class="custom-icon custom-icon--pig"></i><i class="custom-icon custom-icon--ball"></i>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">110 000 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">115 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr class="selected">
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options">
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">10 762 315 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">10 856 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr class="selected">
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options">
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">110 000 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">115 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options"><i class="custom-icon custom-icon--pig"></i><i class="custom-icon custom-icon--ball"></i>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">10 762 315 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">10 856 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options"><i class="custom-icon custom-icon--pig"></i><i class="custom-icon custom-icon--ball"></i>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">110 000 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">115 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="data-table__departure-to"><span id="tour1__date-departure-to">20.12.16, пт.</span><span id="tour1__time-departure-to" class="data-table__departure-time"><span aria-hidden="true" class="glyphicon glyphicon-time"></span>02.45</span></div>
+                  <div class="data-table__departure-from"><span id="tour1__date-departure-from">22.12.16, вс.</span></div>
+                </td>
+                <td>
+                  <div class="data-table__tour-info"><a href="#" class="link--dark-underlined">Burgus Moscow</a><br/>
+                    <div class="custom-badge--1 custom-badge--bright">Discount </div>
+                  </div>
+                </td>
+                <td class="text-center"> <span class="tour__nights-count">2</span></td>
+                <td>
+                  <div class="data-table__hotel-info"><a href="#" class="link--bright-underlined">Palazzo-3 3*</a><span id="tour1__resort-name" class="data-table__resort-name">Солнечный берег</span>
+                    <div class="custom-badge--1 custom-badge--alternate">Early booking</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__room-info"><span id="tour1__room-type">Студия</span><span id="tour1__room-size">DBL</span></div>
+                </td>
+                <td><span id="tour1__feed-type">BB</span></td>
+                <td>
+                  <div class="data-table__options"><i class="custom-icon custom-icon--pig"></i><i class="custom-icon custom-icon--ball"></i>
+                  </div>
+                </td>
+                <td>
+                  <div class="data-table__flight clearfix">
+                    <div class="data-table__flight-to text-right">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-to">Y</div><br/><span>N4</span>
+                    </div>
+                    <div class="data-table__flight-back">
+                      <div id="tour1__flight-type" class="custom-badge--2 custom-badge--flight-back">Y</div><br/><span>N4</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <div class="data-table__tour-pricing">
+                    <div id="tour1__price" class="marker--bright">110 000 <span aria-hidden="true" class="glyphicon glyphicon-rub"></span></div>
+                    <div id="tour1__price--old" class="text-linethrough">115 000 руб.</div>
+                  </div>
+                </td>
+                <td> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="search-results__bottom"><a href="#" class="btn btn--v4 full-width search-results__show-more">Показать еще</a></div>
+      </div>
+    </div>
+    <script src="./js/jquery-2.2.4.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jquery.jscrollpane.min.js"></script>
+    <script src="./js/bowser.js"></script>
+    <script src="./js/js.min.js"></script>
+  </body>
+</html>

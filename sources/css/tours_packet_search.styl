@@ -1,0 +1,393 @@
+@import 'helpers/variables';
+@import 'helpers/mixins';
+@import 'helpers/block_mixins';
+
+.tours-search__container
+    background-color #ffffff
+    box-shadow(0 0 25px -5px rgba(0, 0, 0, 0.5))
+
+.tours-search__header
+    padding-top 30px
+    padding-right p--sm
+    padding-bottom 17px
+    padding-left p--sm
+
+    @media (max-width: 767px)
+        padding-left p--to-sm
+        padding-right p--to-sm
+
+    h4
+        margin 0
+        font-family 'bebas_neueregular', 'Tahoma', sans-serif
+        font-size 40px
+        line-height 1
+        text-transform uppercase
+
+.tours-search__filters
+    padding-top 10px
+    padding-left p--sm
+    padding-bottom 51px
+    padding-right p--sm
+    border-bottom 2px solid #e8e8e8
+
+    @media (max-width: 767px)
+        padding-left p--to-sm
+        padding-right p--to-sm
+
+    label
+    legend
+        fontLabels()
+    label
+        margin-bottom 0
+    legend
+        margin 0
+        margin-bottom 13px
+        border none
+    select
+    input[type=text]
+        fontInputs()
+
+.filters__main
+    margin-bottom 30px
+    .form-group
+        margin-bottom 9px
+    .form-group:last-of-type
+        margin-bottom 0
+
+.filters__main-1
+    @media (min-width 689px)
+        padding-right 25px
+
+    .select--light
+        margin-left 25px
+
+.filters__main-2
+    @media (min-width 689px)
+        padding-right 24px
+        padding-left 29px
+
+    .divider
+        display inline-block
+        padding-left 16px
+        padding-right 16px
+        color dim
+
+.filters__additional
+    padding-top 15px
+    margin-bottom 3px
+
+.filters__additional-1
+    @media (min-width 768px)
+        padding-right 25px
+
+    legend
+        margin-bottom 19px
+
+.filters__additional-2
+    padding-right 25px
+    margin-bottom 23px
+
+    .wrapped-checkbox--light
+        label
+            margin-right 10px
+
+.filters__additional-3
+    padding-right 24px
+    margin-bottom 23px
+
+.filters__additional-4
+    padding-right 25px
+
+    @media (max-width 689px)
+        margin-bottom 2rem
+
+    .wrapped-checkbox--light
+        margin-right 10px
+
+.filters__additional-5
+    padding-right 24px
+
+    @media (max-width 689px)
+        margin-bottom 2rem
+
+.filters__further
+    padding-left 32px
+    margin-top 8px
+
+    @media (max-width: 991px)
+        padding-left 0
+        margin-top 25px
+
+.filters__further-1
+    .select--light
+        max-width 208px
+        margin-bottom 12px
+
+        @media (max-width 689px)
+            max-width 100%
+
+        &:last-of-type
+            margin-bottom 0
+
+.filters__services
+    @media (min-width 690px)
+        .bounded-selects
+            margin-bottom 37px
+
+    @media (max-width 689px)
+        margin-bottom 2rem
+
+.filters__airlines
+    @media (min-width: 992px)
+        min-height 143px
+        padding-bottom 10px
+        margin-bottom 60px
+        border-bottom 1px solid lighterdim
+
+    @media (max-width 689px)
+        margin-bottom 2rem
+
+.filters__seat-availability
+    @media (min-width: 992px)
+        margin-bottom 20px
+
+    @media (max-width 689px)
+        margin-bottom 2rem
+
+.filters__results
+    // max-height 289px
+    padding-top 15px
+    padding-right 0
+    padding-bottom 32px
+    padding-left 20px
+
+    @media (max-width 689px)
+        margin-bottom 2rem
+
+.filters__additional-1
+.filters__results
+    margin-bottom 15px
+
+/*h4*/.filters-results__header
+    margin 0
+    margin-bottom 16px
+    fontLabels()
+
+.filters-results__filter
+    margin-bottom 16px
+
+/*button*/.filters-results__show-selected
+    display inline-block
+    vertical-align middle
+    width 15px
+    height 10px
+    margin-left 7px
+    border none
+    outline none
+    box-shadow none
+    background-image url(../img/i_eye.png)
+    background-repeat no-repeat
+    transition opacity .2s
+    opacity .5
+
+.filters-results__show-selected[data-switch=on]
+    opacity 1
+
+.filters-results__selected-count
+    display inline-block
+    vertical-align middle
+    margin-left 7px
+
+.filters-results__inner-content
+    box-sizing border-box
+    height 161px
+    width 268px
+    // margin-bottom 32px
+    overflow-x hidden
+
+    @media (max-width: 767px)
+        width 90%
+
+    &::-webkit-scrollbar
+        width 7px
+        ackground-color #464646
+        border-left 3px solid white
+        border-right 3px solid white
+    &::-webkit-scrollbar-button
+        background-color #464646
+        width 7px
+        border-left 3px solid white
+        border-right 3px solid white
+    // &::-webkit-scrollbar-track
+    //     background-color red
+    //     width 5px
+    &::-webkit-scrollbar-track-piece
+        background-color #464646
+        width 7px
+        border-left 3px solid white
+        border-right 3px solid white
+    &::-webkit-scrollbar-thumb
+        background-color: #464646
+        width 7px
+        border-radius 3px
+        transition background-color .2s
+        cursor pointer
+    &::-webkit-scrollbar-thumb:hover
+        background-color #ccc
+    // &::-webkit-scrollbar-corner
+    //     background-color brown
+    // &::-webkit-resizer
+    //     background-color #fff
+
+.filters-results__list
+    list-style-type none
+    padding 0
+    margin 0
+
+[class|=wrapped-checkbox] label
+[class|=wrapped-radio] label
+    fontWrappedLabels()
+
+.filters__accept-filters
+    text-align right
+
+    @media (max-width 509px)
+        padding-top 4rem
+        text-align left
+
+    .btn--v3
+        width 177px
+        height 34px
+
+.search-results__header
+    fontResultsHeader()
+    padding-top 55px
+    padding-right p--sm
+    padding-bottom 20px
+    padding-left p--sm
+
+    @media (max-width: 767px)
+        padding-left p--to-sm
+        padding-right p--to-sm
+
+.search-results__data-table
+    fontResultTableBasic()
+    width 100%
+    min-width 940px
+
+    & > thead > tr > th
+        fontTh()
+        padding-top 7px
+        padding-bottom 8px
+
+        &:first-of-type
+            padding-left p--sm
+
+            @media (max-width: 767px)
+                padding-left p--to-sm
+
+        &:last-of-type
+            fontThDarker()
+            width p--sm
+            padding-right 15px
+
+            @media (max-width: 767px)
+                width  p--to-sm
+
+        &:nth-last-of-type(2)
+            fontThDarker()
+            padding-left 22px
+
+    & > tbody > tr
+        background-color lightest
+        border-bottom 1px solid #e8e8e8
+
+        > td
+            padding-top 15px
+            padding-bottom 11px
+            vertical-align top
+
+            &:first-of-type
+                padding-left p--sm
+
+                @media (max-width: 767px)
+                    padding-left p--to-sm
+
+            &:not(:last-of-type)
+                min-width 50px
+
+        &.selected
+            background-color selected
+            border-bottom 1px solid #d9cfb3
+
+.search-results__filter-table
+    cursor pointer
+
+.data-table__departure-to
+    margin-bottom 5px
+
+    > span
+        display block
+
+.data-table__departure-from
+    > span
+        display block
+
+.data-table__departure-time
+    fontResultTime()
+    margin-top -2px
+
+    .glyphicon
+        margin-right 5px
+
+.data-table__tour-info
+    .custom-badge--bright
+        margin-top 5px
+
+.data-table__hotel-info
+    .custom-badge--alternate
+        margin-top 1px
+
+.data-table__resort-name
+    fontSmall()
+    display block
+
+.data-table__room-info
+    span
+        display block
+
+.data-table__tour-pricing
+    display inline-block
+    text-align center
+
+    .marker--bright
+        margin-bottom 3px
+
+.data-table__options
+    margin-top -3px
+
+    .custom-icon:first-of-type
+        margin-right 6px
+
+.data-table__flight
+    width 90px
+
+.data-table__flight-to
+    width 50%
+    float left
+    padding-right 5px
+
+.data-table__flight-back
+    width 50%
+    float left
+    padding-left 5px
+
+.search-results__bottom
+    padding-top 21px
+    padding-right p--sm
+    padding-bottom 40px
+    padding-left p--sm
+
+    @media (max-width: 767px)
+        padding-left p--to-sm
+        padding-right p--to-sm

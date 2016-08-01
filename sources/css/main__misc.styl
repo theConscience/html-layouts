@@ -1,0 +1,338 @@
+@import 'helpers/variables'
+@import 'helpers/mixins'
+@import 'helpers/block_mixins'
+
+.important-block--rounded
+    border 1px solid dim
+    border-radius bdrs-rndd
+
+.select--light
+.input--light
+    display inline-block
+    // box-sizing border-box
+    padding-top 5px
+    padding-right 15px
+    padding-bottom 4px
+    padding-left 13px
+    max-height 28px
+    max-width 188px
+    border 1px solid dim
+    border-radius bdrs-rndd
+
+.select--light:disabled
+.input--light:disabled
+    border-color #dddddd
+    color #979797
+
+.input--light
+    max-width 228px
+    width 228px
+
+.select--small
+    padding-left 13px
+    padding-right 5px
+    min-width 60px
+    border 1px solid dim
+    border-radius bdrs-rndd
+
+.calendar
+    display inline-block
+    min-width 60px
+    border-bottom 1px dotted dim
+    text-decoration none
+    text-align center
+    cursor pointer
+    fontDatepickers()
+    line-height 19px
+
+.link--dark-underlined
+    fontLinkDarkUnderlined()
+
+.link--bright-underlined
+    fontLinkBrightUnderlined()
+
+.custom-badge--1
+    position relative
+    display inline-block
+    padding-top 1px
+    padding-right 8px
+    padding-left 15px
+    border-radius 10px
+
+    &:before
+        position absolute
+        left 7px
+        top 0
+        bottom 0
+        width 4px
+        height 4px
+        margin-top auto
+        margin-bottom auto
+        border-radius 50%
+        background-color lightest
+        content ''
+
+.custom-badge--bright
+    fontBadgeBright()
+
+.custom-badge--alternate
+    fontBadgeAlternate()
+
+.custom-badge--2
+    position relative
+    display inline-block
+    width 40px
+    height 19px
+    padding-top 1px
+    padding-right 8px
+    padding-left 8px
+    border 1px solid medium
+    border-radius 20px
+
+.custom-badge--flight-to
+    text-align left
+
+    &:before
+        position absolute
+        left 21px
+        top 3px
+        width 11px
+        height 11px
+        background-image url(../img/i_plane.png)
+        background-repeat no-repeat
+        content ''
+
+.custom-badge--flight-back
+    &:before
+        position absolute
+        left 21px
+        top 3px
+        width 11px
+        height 11px
+        background-image url(../img/i_plane.png)
+        background-repeat no-repeat
+        transform(rotate(180deg))
+        content ''
+
+.marker--bright
+    fontMarkerBright()
+    display inline-block
+    padding-top 4px
+    padding-right 15px
+    padding-bottom 3px
+    padding-left 15px
+    border-radius 3px
+
+    .glyphicon
+        font-size 13px
+
+.text-linethrough
+    fontLineThrough()
+    text-decoration line-through
+
+.custom-icon
+    display inline-block
+    background-repeat no-repeat
+
+.custom-icon--pig
+    width 19px
+    height 20px
+    background-image url(../img/i_pig.png)
+
+.custom-icon--ball
+    width 15px
+    height 15px
+    background-image url(../img/i_ball.png)
+
+// .input--light
+//     border 1px solid dim
+//     border-radius bdrs-rndd
+
+.wrapped-input--light
+    position relative
+    display inline-block
+    vertical-align baseline
+
+    label
+        position absolute
+        transition all .2s
+
+    input + label
+        top 5px
+        left 15px
+        font-size 13px
+
+    input[data-input=true] + label
+        top -19px
+        left 0px
+        font-size 10px
+        color deepskyblue
+
+    input:focus + label
+        top -19px
+        left 0px
+        font-size 10px
+        color deepskyblue
+
+.wrapped-checkbox--light
+    margin-bottom -3px
+    label
+        position relative
+        margin-bottom 0
+        padding-left 27px
+        cursor pointer
+
+        &:before
+            position absolute
+            left 0
+            width 16px
+            height 16px
+            padding-left 3px
+            padding-top 2px
+            border 1px solid dim
+            border-radius bdrs-rndd
+            transition background-color .2s
+            font-family 'Glyphicons Halflings'
+            font-style normal
+            font-size 10px
+            font-weight 400
+            line-height 1
+            -webkit-font-smoothing antialiased
+            -moz-osx-font-smoothing grayscale
+            content ''
+
+    input[type=checkbox]
+        display none
+
+        &:checked + label:before
+            border none
+            background-color bright
+            color lightest
+            content '\e013'
+
+.wrapped-radio--light
+    margin-bottom -3px
+    label
+        position relative
+        margin-bottom 0
+        padding-left 27px
+        cursor pointer
+
+        &:before
+            position absolute
+            left 0
+            width 17px
+            height 17px
+            border 1px solid dim
+            border-radius bdrs-crcl
+            z-index 2
+            content ''
+
+        &:after
+            position absolute
+            left 4px
+            top 4px
+            width 9px
+            height 9px
+            background-color transparent
+            border-radius bdrs-crcl
+            transition background-color .2s
+            z-index 3
+            content ''
+
+    input[type=radio]
+        display none
+        &:checked + label:before
+            border none
+            background-color bright
+            color lightest
+        &:checked + label:after
+            background-color lightest
+
+.btn--v3
+    fontButtonV3()
+    border-radius 20px
+    transition background-color .2s
+
+    &:hover
+        background-color darkbright
+        color lighter
+
+.btn--v4
+    fontButtonV4()
+    display block
+    padding-top 12px
+    padding-bottom 10px
+    border-radius 3px
+    transition background-color .2s
+
+    &:hover
+        background-color darkalternate
+        color lighter
+
+    &:active
+    &:focus
+        color lighter
+
+.bounded-selects
+    position relative
+
+.bounded-selects__bound
+    position absolute
+    z-index 3
+    right -16px
+    top 0
+    bottom 0
+    margin-top auto
+    margin-bottom auto
+    width 16px
+    height 41px
+    border-top 1px solid black
+    border-right 1px solid black
+    border-bottom 1px solid black
+    border-left none
+    background-color transparent
+    outline none
+
+    &:before
+        position absolute
+        z-index 4
+        right -10px
+        top 0
+        bottom 0
+        width 20px
+        height 20px
+        margin-top auto
+        margin-bottom auto
+        border-radius 50%
+        border 1px solid black
+        background-color #fff
+        content ''
+
+    &[data-switch=on]:after
+        position absolute
+        z-index 5
+        font-family 'Glyphicons Halflings'
+        font-style normal
+        font-size 10px
+        font-weight 400
+        line-height: 1px;
+        padding-left: 2px;
+        -webkit-font-smoothing antialiased
+        -moz-osx-font-smoothing grayscale
+        color black
+        content '\e013'
+
+.jspVerticalBar
+    width 7px
+    background white
+
+.jspTrack
+    background #464646
+    width 1px
+
+.jspDrag
+    background #464646
+    width: 7px;
+    border-radius: 3px;
+    left: -3px;
