@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,cACE,cAAgB,CACjB,AACD,yBACE,cACE,cAAgB,CACjB,CACF,AACD,oBACE,SAAY,CACb","file":"page_style.min.css","sourcesContent":[".page-1-class {\n  font-size: 10px;\n}\n@media (max-width: 768px) {\n  .page-1-class {\n    font-size: 11px;\n  }\n}\n.page-1-class:hover {\n  color: #f00;\n}\n"],"sourceRoot":"/source/"}

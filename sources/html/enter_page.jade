@@ -1,0 +1,50 @@
+include ./includes/mixins.jade
+
+doctype html
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        title Enter unihotel page
+        meta(keywords="enter to unihotel")
+        //- link(rel="stylesheet",
+        //-     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css",
+        //-     integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7",
+        //-     crossorigin="anonymous")
+        //- link(rel="stylesheet", href="./css/bootstrap.min.css")
+        link(rel="stylesheet", href="./css/legacy_css.min.css")
+        link(rel="stylesheet", href="./css/enter_page_css.min.css")
+        link(rel="stylesheet", href="./css/enter_page_styles.min.css")
+    body.enter-page
+        .container-xl
+            nav.enter-page__nav
+                ul.flex
+                    li.enter-page__nav-item
+                        a.nav-link__lang-selection(href="#")
+                    li.enter-page__nav-item
+                        a.nav-link__logo-to-main(href="#")
+                    li.enter-page__nav-item
+                        a.nav-link__enter(href="#")
+                        section.enter__menu
+                            form#enter_form(action="#", method="GET")
+                                header Войти
+                                label Логин
+                                input#enter__login.enter__login(type="text", name="login")
+                                label Пароль
+                                input#enter__password.enter__password(type="password", name="password")
+                                a.enter__forgot-password(href="#") Забыли пароль?
+                                button.btn.btn--v5(type="submit") Войти
+                            a.btn.btn--v6(href="#") Регистрация
+                            
+                    li.enter-page__nav-item
+                        a.nav-link__about(href="#")
+                    li.enter-page__nav-item.flex-item-cross-end
+                        a.nav-link__xml-test(href="#")
+
+            main.enter-page__content
+                article.enter-page__hotels
+                article.enter-page__agents
+            aside.enter-page__additional-info
+                
+                
+            
+        
