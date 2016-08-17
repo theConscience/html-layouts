@@ -1,0 +1,82 @@
+@import 'helpers/_variables'
+@import 'helpers/_block_mixins'
+
+
+.btn
+    border-radius 0
+    transition color .4s, background-color .4s, border .4s
+
+
+.btn--v5
+    width 100%
+    fontHvMedium14_20()
+    color c_white
+    background-color c_contrast
+
+    &:hover
+    &:focus
+        color c_white-darken
+        background-color c_contrast-darken
+
+
+.btn--v6
+    width 100%
+    border 1px solid c_contrast
+    fontHvMedium14_20()
+    color c_contrast
+    background-color transparent
+
+    &:hover
+    &:focus
+        color c_contrast-darken
+        background-color c_dark-transparent-bg
+
+
+.btn--v7
+    fontHvLight18_30()
+    padding-top 10px
+    padding-right 32px
+    padding-bottom 9px
+    padding-left 32px
+    min-width 186px
+    border 0
+    border-radius 0
+    background-color c_contrast
+    color c_white
+
+    &:hover
+    &:focus
+        color c_white-darken
+        background-color c_contrast-darken
+
+
+.custom-label--v1
+    position relative
+    fontHvRoman14_30()
+
+    & > input
+        position relative
+        z-index 20
+        box-sizing border-box
+        width 182px
+        padding-top 2px
+        padding-right 20px
+        padding-bottom 1px
+        padding-left 20px
+        color c_white
+        border 1px solid c_medium-border
+        background-color transparent
+
+        &:focus + label
+        &[data-input=true] + label
+            font-size 12px
+            left 2px
+            top -21px
+            color c_contrast
+
+    & > label
+        position absolute
+        left 20px
+        top 2px
+        color c_medium-font
+        transition top .4s, left .4s, font-size .4s

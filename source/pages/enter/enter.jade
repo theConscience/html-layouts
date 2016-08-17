@@ -1,0 +1,100 @@
+extends ../layouts/sub/sub-2/sub-2
+
+block head
+    - var pageName = 'enter';
+    - var pageTitle = 'Enter page template';
+
+
+block append links
+    link(href='./css/page_css.min.css' rel='stylesheet')
+    link(href='./css/page_style.min.css' rel='stylesheet')
+
+
+block append scripts
+    script(src='./js/page_js.min.js')
+
+
+block append content
+    article.enter-content__hotels.hotels-enter
+        header.hotels-enter__header.flex.flex-main-between
+            .l-left
+                h1.hotels-enter__for-hotels.for-hotels
+                    | Отелям 
+                    span.for-hotels__info 3452 отеля уже с нами
+                h1.hotels-enter__for-representatives Представительствам
+            .l-right.flex-item-cross-end
+                a#hotels-enter__know-more.btn.btn--v7 Узнать больше
+        section.hotels-enter__content
+            ul.hotels-enter__features.features-list.flex.flex-wrap.flex-main-between
+                li.features-list__item.features-list__item--marked
+                    h2
+                        | Бесплатный
+                        | Международный
+                        | Туристический
+                        | Справочник 
+                    span для отелей и операторов
+                li.features-list__item.features-list__item--tourist-services
+                    h2 
+                        | Сервисы туристам
+                        | <span class="smaller-title">Отельное приложение для гостей</span>
+                li.features-list__item.features-list__item--hotel-page
+                    h2 Страница отеля на базе опросников
+                li.features-list__item.features-list__item--online-booking
+                    h2 Модуль онлайн бронирования                    
+                li.features-list__item.features-list__item--prices-spo
+                    h2
+                        | Прайсы. Спо.
+                        | Хранение данных
+                li.features-list__item.features-list__item--news
+                    h2 Новостные публикации с охватом аудитории
+                li.features-list__item.features-list__item-company-profile
+                    h2 Профайл компании/ представительства отелей
+                li.features-list__item.features-list__item--hotel-replies
+                    h2 Отзывы по отелю от профессионалов
+                li.features-list__item.features-list__item--events-calendar
+                    h2 
+                        | Календарь квот мест. Мероприятия и события.
+                        | Вебинары
+
+    article.enter-content__agents.agents-enter
+        header.agents-enter__header.flex.flex-main-between
+            .l-left
+                h1.agents-enter__for-agents.for-agents
+                    | Агентам 
+                    span.for-agents__info 1345 агента уже с нами
+                h1.agents-enter__for-representatives Туроператорам
+            .l-right.flex-item-cross-end
+                a#agents-enter__know-more.btn.btn--v7 Узнать больше
+        section.agents-enter__content
+            ul.agents-enter__features.features-list.flex.flex-wrap.flex-main-between
+                li.features-list__item.features-list__item--marked
+                    h2
+                        | Бесплатный
+                        | Международный
+                        | Туристический
+                        | Справочник
+                    span для отелей и операторов
+                li.features-list__item.features-list__item--share-services
+                    h2 Выгрузка сервисов для партнёров и путешественников
+                li.features-list__item.features-list__item--tours-excursions
+                    h2
+                        | Туры. Экскурсии.
+                        | Динамические пакеты
+                li.features-list__item.features-list__item--online-booking
+                    h2 Модуль онлайн бронирования                    
+                li.features-list__item.features-list__item--prices-spo
+                    h2
+                        | Прайсы. Спо.
+                        | Хранение данных
+                li.features-list__item.features-list__item--statistics-fincenters
+                    h2
+                        | Статистика по менеджерам и странам.
+                        | Финцентры
+                li.features-list__item.features-list__item--news
+                    h2 Новостные публикации с охватом аудитории
+                li.features-list__item.features-list__item-company-profile
+                    h2 Профайл компании
+                li.features-list__item.features-list__item--events-calendar
+                    h2  
+                        | Календарь квот мест. Мероприятия и события.
+                        | Вебинары

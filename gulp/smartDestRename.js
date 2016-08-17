@@ -8,16 +8,21 @@ var path = require('path'),
   through = require('through2');
 
 
-var getRightFolders = function(someFolders, folderType, cutType) {
+var getRightFolders = function(someFolders, folderType, cutType) {  // возвращает либо массив либо строку, надо будет это исправить
   cutType = cutType || 'head';
   gutil.log('getRightFolders: cutType', gutil.colors.bold.yellow(cutType));
   gutil.log('getRightFolders: folderType', gutil.colors.bold.yellow(folderType));
 
   var somePathFolders = [];
   if (typeof someFolders === 'string') {
+    console.log('******* someFolders ===', someFolders, 'string!');
     somePathFolders = someFolders.split(path.sep);
-  } else {
+  } else if (typeof someFolders === 'object') {
+    console.log('******* someFolders ===', someFolders, 'object!');
     somePathFolders = someFolders;
+  } else {
+    console.log('******* someFolders ===', someFolders, 'undefined!');
+    return somePathFolders;
   }
   gutil.log('getRightFolders: somePathFolders', gutil.colors.bold.yellow(somePathFolders));
 
@@ -25,6 +30,7 @@ var getRightFolders = function(someFolders, folderType, cutType) {
   gutil.log('getRightFolders: pathCheck', gutil.colors.bold.yellow(pathCheck));
 
   if (somePathFolders.indexOf(pathCheck) === -1) {
+    console.log('*******!!! Can`t find pathCheck in given path`s folders, return them as is!');
     return somePathFolders;
 
   } else {
@@ -52,6 +58,7 @@ var getRightFolders = function(someFolders, folderType, cutType) {
         }
         return false;
       }
+
       return false;
     });
   }
@@ -64,14 +71,14 @@ var getRightFolders = function(someFolders, folderType, cutType) {
 var getUniqueFolders = function(oldPath, newPath) {
   var oldFileFolder = path.dirname(oldPath);
   var newFileFolder = path.dirname(newPath);
-  gutil.log('getUniqueFolders: newFileFolder', gutil.colors.bold.yellow(newFileFolder));
   gutil.log('getUniqueFolders: oldFileFolder', gutil.colors.bold.yellow(oldFileFolder));
-  var newFileFolders = newFileFolder.split(path.sep);
+  gutil.log('getUniqueFolders: newFileFolder', gutil.colors.bold.yellow(newFileFolder));
   var oldFileFolders = oldFileFolder.split(path.sep);
-  gutil.log('getUniqueFolders: newFileFolders', gutil.colors.bold.yellow(newFileFolders));
+  var newFileFolders = newFileFolder.split(path.sep);
   gutil.log('getUniqueFolders: oldFileFolders', gutil.colors.bold.yellow(oldFileFolders));
+  gutil.log('getUniqueFolders: newFileFolders', gutil.colors.bold.yellow(newFileFolders));
   var uniqueFolders = [];
-  if (oldFileFolders.length > newFileFolders.length) {
+  if (oldFileFolders.length >= newFileFolders.length) {
     uniqueFolders = oldFileFolders.map(function(item, i) {
       if (item !== newFileFolders[i]) {
         return item;
@@ -92,6 +99,11 @@ var getUniqueFolders = function(oldPath, newPath) {
     return !!item;
   });
 
+  if (!uniqueFolders.join()) {  // если содержимое массива собирается в пустую строку, т.е. старая и новая папки идентичны, то возвращаем массив с папками нового пути
+    console.log('####### Old and New folder - is the same, return New folder!');
+    uniqueFolders = newFileFolders;
+  }
+
   gutil.log('getUniqueFolders: uniqueFolders after filtration', gutil.colors.bold.yellow(uniqueFolders));
   return uniqueFolders;
 };
@@ -110,13 +122,16 @@ var smartDestRename = function(options) {  // works with gulp-concat[refactored]
       gutil.log('file.newPath', gutil.colors.blue(file.newPath));
       folders = getUniqueFolders(file.oldPath, file.newPath);
       losen_folder = getRightFolders(folders, folderType, 'tail')[0];
+      if (!losen_folder) {
+        losen_folder = '';
+      }
       gutil.log('losen_folder', gutil.colors.green(losen_folder));
       file.path = path.join(path.dirname(file.path), losen_folder, destination, path.basename(file.path));
       gutil.log('file.path2', gutil.colors.green(file.path));
     } else {
       gutil.log('No old file path!!!', gutil.colors.bold.red('WOW!'));
       gutil.log('file.path', gutil.colors.red(file.path));
-      folders = getRightFolders(path.dirname(file.path), folderType,  'head');
+      folders = getRightFolders(path.dirname(file.path), folderType, 'head');
       file.path = path.join(folders.join(path.sep), destination, path.basename(file.path));
       gutil.log('file.path2', gutil.colors.bold.red(file.path));
     }

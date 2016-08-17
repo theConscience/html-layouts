@@ -104,9 +104,6 @@ var path = require('path'),
     console.log('FINISH: script finishes!');
   };
 
-  //  getFolderOfParentTemplate(parentTemplatesFolders, './source/pages/page-1/page-1.jade');
-
-
 
   var copyParentAssets = function(file, destination) {
     var filename = file.path;
@@ -163,7 +160,7 @@ var path = require('path'),
       gutil.log('parent_item_name ==', gutil.colors.blue(parent_item_name));
 
       var parent_js_glob = rel_generated_content + parent_item_type + parent_item_name + '/js/*.+(js|JS)';
-      var parent_css_glob = rel_generated_content + parent_item_type + parent_item_name + '/css/*.+(css|CSS)';
+      var parent_css_glob = rel_generated_content + parent_item_type + parent_item_name + '/css/*.+(css|CSS|css.map)';
       var parent_img_glob = rel_generated_content + parent_item_type + parent_item_name + '/images/*.+(png|jpg|jpeg|gif|svg|PNG|JPG|JPEG|GIF|SVG)';
       var parent_fonts_glob = rel_generated_content + parent_item_type + parent_item_name + '/fonts/*';
       gutil.log('parent_js_glob ==', gutil.colors.magenta(parent_js_glob));
@@ -208,12 +205,14 @@ var path = require('path'),
         fs_ex.copySync(parent_file_item, dest_fonts_folder + parent_file_item_name)
       });
     });
+
+    return file;  // возвращаем файл
   };
 
 
  var harvestBoundedAssets = function(options) {
    return through.obj(function(file, encoding, callback) {
-     callback(null, copyParentAssets(file, options.dest));
+     callback(null, copyParentAssets(file, options.dest));  // вторым аргументом нужно вернуть файл (из функции) иначе он пропадёт из потока
    });
  };
 

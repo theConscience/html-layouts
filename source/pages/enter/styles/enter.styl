@@ -1,0 +1,163 @@
+@import './helpers/_variables'
+@import './helpers/_mixins'
+@import './helpers/_block_mixins'
+
+.enter-content/*.enter-page__content*/
+    position absolute
+    top 0
+    bottom 0
+    display flex
+    align-items stretch
+    overflow hidden
+    width 100%
+    padding-left 100px
+    background-color c_darker-bg
+
+.enter-content__hotels
+    width 100%
+    padding-top 42px
+    padding-left 67px
+    color c_white
+    background-color c_darker-bg
+    background-repeat no-repeat
+    background-image url(../images/bg-hotels.jpg)
+    background-position left top
+    background-size auto 100%
+
+.hotels-enter__header
+.agents-enter__header
+    width 45%
+    margin-bottom 66px
+
+.hotels-enter__header > div:nth-child(2)
+.agents-enter__header > div:nth-child(2)
+    padding-left 20px
+
+/*h1*/.hotels-enter__for-hotels
+/*h1*/.hotels-enter__for-representatives
+/*h1*/.agents-enter__for-agents
+/*h1*/.agents-enter__for-representatives
+    margin 0
+    fontHvBold32()
+    color c_white
+    text-transform uppercase
+
+/*h1*/.hotels-enter__for-hotels
+/*h1*/.agents-enter__for-agents
+    margin-bottom 20px
+
+.for-hotels__info
+.for-agents__info
+    display inline-block
+    width 24%
+    margin-left 24px
+    fontHvLight12_auto()
+    color c_darken-font
+
+.enter-content__agents
+    position absolute
+    top 0
+    bottom 0
+    left 55%
+    width 100%
+    padding-top 42px
+    padding-left 67px
+    color c_white
+    background-color c_darkest-bg
+    background-repeat no-repeat
+    background-image url(../images/bg-agents.jpg)
+    background-position left top
+    background-size auto 100%
+    transition left 1s
+
+    &:hover
+        left 25%
+
+.features-list
+    width 699px
+    padding 0
+    margin 0
+    list-style-type none
+
+.features-list__item
+    flex-basis 233px
+    max-width 233px
+    padding-top 88px
+    padding-left 32px
+    padding-right 32px
+    box-sizing border-box
+    min-height 184px
+    background-repeat no-repeat
+    background-position 30px 20px
+    padding-top 115px
+
+    &:nth-child(-n+3)
+        background-position 30px 0px
+        padding-top 88px
+
+    > h2
+        margin 0
+        fontHvBold15_22()
+
+        & > .smaller-title
+            fontHvLight15_22()
+
+.features-list__item--marked.features-list__item--marked /* хак - чтобы не наследовать padding-top 88px*/
+    padding-top 14px
+    padding-right 27px
+    padding-bottom 18px
+    padding-left 27px
+    border 7px solid c_seo
+
+    > h2
+        margin 0
+        fontHvBold16_28()
+
+    > span
+        fontHvLight14_28()
+        text-transform lowercase
+
+.features-list__item--tourist-services
+    background-image url(../images/bg-tourist-services.png)
+    background-size 54px 64px
+
+
+.features-list__item--hotel-page
+    background-image url(../images/bg-hotel-page.png)
+    background-size 78px 64px
+
+.features-list__item--online-booking
+    background-image url(../images/bg-share-services.png)
+    background-size 45px 68px
+
+.features-list__item--prices-spo
+    background-image url(../images/bg-prices-spo.png)
+    background-size 77px 66px
+
+.features-list__item--news
+    background-image url(../images/bg-news-social.png)
+    background-size 79px 79px
+
+.features-list__item-company-profile
+    background-image url(../images/bg-profile.png)
+    background-size 72px 57px
+
+.features-list__item--hotel-replies
+    background-image url(../images/bg-replies.png)
+    background-size 72px 57px
+
+.features-list__item--events-calendar
+    background-image url(../images/bg-calend.png)
+    background-size 78px 79px
+
+.features-list__item--share-services
+    background-image url(../images/bg-tourist-services.png)
+    background-size 54px 64px
+
+.features-list__item--tours-excursions
+    background-image url(../images/bg-tours-excursions.png)
+    background-size 79px 59px
+
+.features-list__item--statistics-fincenters
+    background-image url(../images/bg-stat.png)
+    background-size 64px 64px
