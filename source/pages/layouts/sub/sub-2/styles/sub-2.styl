@@ -4,34 +4,54 @@
 
 /**--------------------------------*\
  * .external-page__navigation
- ** dfsdf dsf sd fsdf sd s df sd
- ** sdf sdf dfs dfsdfsdfsdfsdfsd
- ** dsfs sdfsdfsdfsdf sdfsdf
+ **
 \*--------------------------------*/
 .external-page__navigation/*.nav-external*/
-    position absolute
+    // position absolute
+    // z-index 10
+    // left 0
+    // top 0
+    // bottom 0
+    position relative
     z-index 10
-    left 0
-    top 0
-    bottom 0
     display flex
+    min-height 100vh
     width 100px
+    min-width 100px
     color c_darkest-font
     background-color c_basic-bg
+    box-shadow bxsh-default
 
-    > ul
-        width 100% /**/
-        padding 0
-        margin 0
-        list-style-type none
+    @media (max-width: 479px)
+        width 100%
+        min-height 80px
+        height 80px
+
+.nav-external__list
+    display flex
+    flex-direction column
+    width 100% /**/
+    padding 0
+    margin 0
+    list-style-type none
+
+    @media (max-width: 479px)
+        flex-direction row
 
 /*li*/.nav-external__item
     position relative
 
+    @media (max-width: 479px)
+        width 20%
+
 .nav-external__item--special
+    flex-grow 1
     position relative
     z-index 20
     background-color c_basic-bg
+
+    @media (max-width: 479px)
+        flex-grow 0
 
 /*a*/.nav-external__link
     position relative
@@ -40,6 +60,9 @@
     height 100px
     text-decoration none
     transition color .4s
+
+    @media (max-width: 479px)
+        height 80px
 
 
 /* languages block *\
@@ -53,6 +76,9 @@
     color c_darkest-font
     background-color c_basic-bg
 
+    @media (max-width: 479px)
+        padding-top 28px
+
     &:hover
     &:focus
         color c_contrast
@@ -60,9 +86,14 @@
     &:hover ~ .lang-selection__popup-1
         left 100px
 
-    &:focus ~ .lang-selection__popup-2
-        visibility visible
-        opacity 1
+    // &:focus ~ .lang-selection__popup-2
+    //     visibility visible
+    //     opacity 1
+
+    @media (max-width: 479px)
+        &:hover ~ .lang-selection__popup-1
+            left 0
+            top 80px
 
 /*ul*/.lang-selection__popup-1/*.lang-selection*/
     position absolute
@@ -78,7 +109,19 @@
     transition left .4s ease-in
 
     &:hover
+    &.is-active
         left 100px
+
+    @media (max-width: 479px)
+        left 0
+        top -100px
+        min-height 80px
+        transition top .4s ease-in
+
+        &:hover
+        &.is-active
+            left 0
+            top 80px
 
 .lang-selection__item
     width 100px
@@ -118,6 +161,10 @@
     background-color c_white
     transition opacity .4s ease-in
 
+    @media (max-width: 479px)
+        left 0
+        top 80px
+
 .languages__item
     font-size 14px
     line-height 39px
@@ -139,12 +186,28 @@
     background-color c_contrast
 
     &:hover ~ .logo__popup
-    &:focus ~ .logo__popup
+    // &:focus ~ .logo__popup
+    & ~ .logo__popup.is-active
         left 100px
+
+    @media (max-width: 479px)
+        padding-top 0
+
+        &:hover ~ .logo__popup
+        // &:focus ~ .logo__popup
+        & ~ .logo__popup.is-active
+            left -100%
+            top 80px
 
 /*img*/.logo--white-small
     width 80px
     margin: 0 auto;
+
+    @media (max-width: 479px)
+        height 81px
+        margin auto
+        padding-left 5px
+        padding-right 5px
 
 .logo__popup
     position absolute
@@ -158,6 +221,11 @@
     color c_seo-darken
     background-color c_white
     transition left .4s ease-in
+
+    @media (max-width: 479px)
+        left -100%
+        top -100px
+        transition top .4s ease-in
 
 
 /* sign-in block *\
@@ -195,13 +263,29 @@
         content ''
 
     &:hover::after
-    &:focus::after
+    // &:focus::after
         left 100px
         opacity 1
 
     &:hover ~ .sign-in__popup
-    &:focus ~ .sign-in__popup
+    // &:focus ~ .sign-in__popup
         left 100px
+
+    @media (max-width: 479px)
+        padding-top 48px
+        background-position 50% 35%
+
+        &::after
+            display none
+
+        &:hover::after
+        // &:focus::after
+            left 0
+
+        &:hover ~ .sign-in__popup
+        // &:focus ~ .sign-in__popup
+            left 0
+            top 80px
 
 .sign-in__popup
     position absolute
@@ -214,6 +298,7 @@
     padding-top 31px
     padding-right 57px
     padding-left 49px
+    padding-bottom 30px
     background-color c_dark-transparent-bg
     transition left .4s ease-in
     box-shadow 0 0 30px rgba(0, 0, 0, 0.5)
@@ -232,11 +317,30 @@
 
     &:hover::before
     &:focus::before
+    &.is-active::before
         opacity 1
 
     &:hover
     &:focus
+    &.is-active
         left 100px
+
+    @media (max-width: 479px)
+        top -320px
+        left 0
+        bottom auto
+        width 100%
+        transition left 0s
+        transition top .4s ease-in
+
+        &::before
+            display none
+
+        &:hover
+        &:focus
+        &.is-active
+            left 0
+            top 80px
 
 .sign-in__header
     fontHvLight30_52()
@@ -303,6 +407,10 @@
     text-align center
     text-transform uppercase
 
+    @media (max-width: 479px)
+        padding-top 48px
+        background-position 50% 35%
+
     &:hover
     &:focus
         color c_contrast
@@ -319,6 +427,10 @@
     text-align center
     text-transform uppercase
 
+    @media (max-width: 479px)
+        padding-top 48px
+        background-position 50% 35%
+
     &:hover
     &:focus
         color c_contrast
@@ -329,16 +441,22 @@
  **
 \*--------------------------------*/
 .external-page__additional-info
-    position absolute
+    // position absolute
+    // z-index 20
+    // right 0
+    // top 0
+    // bottom 0
+    position relative
     z-index 20
-    right 0
-    top 0
-    bottom 0
     width 284px
+    min-width 284px
     color c_white
     background-color c_darken-bg
-    box-shadow 0 0 30px rgba(0, 0, 0, 0.5)
+    box-shadow bxsh-default
 
+    @media (max-width: 479px)
+        width 100%
+ 
 .info-additional__header
     min-height 327px
     padding-top 196px

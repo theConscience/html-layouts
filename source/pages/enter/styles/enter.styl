@@ -2,21 +2,30 @@
 @import './helpers/_mixins'
 @import './helpers/_block_mixins'
 
-.enter-content/*.enter-page__content*/
-    position absolute
-    top 0
-    bottom 0
+// @media (max-width: 1023px)
+//     body
+//         flex-direction column
+
+/*main*/.enter-content/*.enter-page__content*/
+    // position absolute
+    // top 0
+    // bottom 0
+    position relative
     display flex
     align-items stretch
     overflow hidden
     width 100%
-    padding-left 100px
+    // padding-left 100px
     background-color c_darker-bg
 
-.enter-content__hotels
+    @media (max-width: 1023px)
+        flex-direction: column;
+
+/*article*/.enter-content__hotels
     width 100%
     padding-top 42px
     padding-left 67px
+    padding-bottom 30px
     color c_white
     background-color c_darker-bg
     background-repeat no-repeat
@@ -24,23 +33,44 @@
     background-position left top
     background-size auto 100%
 
+    @media (max-width: 1023px)
+        border-bottom 7px solid c_seo
+
 .hotels-enter__header
 .agents-enter__header
+    display flex
+    justify-content space-between
     width 45%
+    min-width 522px
     margin-bottom 66px
+
+    @media (max-width: 1565px)
+        flex-wrap wrap
 
 .hotels-enter__header > div:nth-child(2)
 .agents-enter__header > div:nth-child(2)
     padding-left 20px
 
+    @media (max-width: 1565px)
+        padding-top 20px
+        padding-left 0
+
 /*h1*/.hotels-enter__for-hotels
 /*h1*/.hotels-enter__for-representatives
 /*h1*/.agents-enter__for-agents
-/*h1*/.agents-enter__for-representatives
+/*h1*/.agents-enter__for-operators
     margin 0
     fontHvBold32()
     color c_white
     text-transform uppercase
+
+.hotels-enter__for-representatives
+    @media (max-width: 1140px)
+        max-width 400px
+
+.agents-enter__for-operators
+    @media (max-width: 1140px)
+        max-width 285px
 
 /*h1*/.hotels-enter__for-hotels
 /*h1*/.agents-enter__for-agents
@@ -54,7 +84,7 @@
     fontHvLight12_auto()
     color c_darken-font
 
-.enter-content__agents
+/*article*/.enter-content__agents
     position absolute
     top 0
     bottom 0
@@ -62,6 +92,7 @@
     width 100%
     padding-top 42px
     padding-left 67px
+    padding-bottom 30px
     color c_white
     background-color c_darkest-bg
     background-repeat no-repeat
@@ -70,14 +101,31 @@
     background-size auto 100%
     transition left 1s
 
+    @media (max-width: 1023px)
+        position relative
+        top auto
+        bottom auto
+        left auto
+        width 100%
+        border-bottom 7px solid c_seo
+
     &:hover
         left 25%
+
+        @media (max-width: 1023px)
+            left 0
 
 .features-list
     width 699px
     padding 0
     margin 0
     list-style-type none
+
+    @media (max-width: 1710px)
+        width 466px
+
+    @media (max-width: 1279px)
+        width 233px
 
 .features-list__item
     flex-basis 233px
@@ -94,6 +142,10 @@
     &:nth-child(-n+3)
         background-position 30px 0px
         padding-top 88px
+
+        @media (max-width: 1710px)
+            padding-top 115px
+            background-position 30px 20px
 
     > h2
         margin 0
