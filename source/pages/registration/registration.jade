@@ -9,11 +9,14 @@ block head
 
 
 block append links
+    link(href='../../distrs/mCustomScrollbar/jquery.mCustomScrollbar.min.css' rel='stylesheet')
+    link(href='../../distrs/mCustomScrollbar/unihotel-registration-scrollbar.min.css' rel='stylesheet')
     link(href='./css/page_css.min.css' rel='stylesheet')
     link(href='./css/page_style.min.css' rel='stylesheet')
 
 
 block append scripts
+    script(src='../../distrs/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js')
     script(src='./js/page_js.min.js')
 
 
@@ -97,6 +100,9 @@ block append content
                                 label.registration-form__label(for='reg-user-password') Пароль
                             .l-col-basis-300
                                 +custom_input('dark', 'password', 'reg-user-password', 'registration-form__input', 'user-password', true, false, pattern='[\\w|\\W]{6,}')
+                            .l-col-basis-200
+                                label.registration-form__label(for='reg-user-password-check') Подтвердите пароль
+                            .l-col-basis-300
                                 +custom_input('dark', 'password', 'reg-user-password-check', 'registration-form__input', 'user-password-check', true, false, pattern='[\\w|\\W]{6,}')
                         .l-row.l-row-wrap.l-row-cross-end.l-col-basis-500 
                             .l-col-basis-200
@@ -154,3 +160,4 @@ block append content
 
 block right_side
     //- обнуляем этот блок, иначе он унаследуется от sub-2.jade
+ 

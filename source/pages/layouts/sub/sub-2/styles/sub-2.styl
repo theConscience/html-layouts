@@ -22,7 +22,7 @@
     background-color c_basic-bg
     box-shadow bxsh-default
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         width 100%
         min-height 80px
         height 80px
@@ -35,13 +35,13 @@
     margin 0
     list-style-type none
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         flex-direction row
 
 /*li*/.nav-external__item
     position relative
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         width 20%
 
 .nav-external__item--special
@@ -50,7 +50,7 @@
     z-index 20
     background-color c_basic-bg
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         flex-grow 0
 
 /*a*/.nav-external__link
@@ -61,7 +61,7 @@
     text-decoration none
     transition color .4s
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         height 80px
 
 
@@ -76,7 +76,7 @@
     color c_darkest-font
     background-color c_basic-bg
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         padding-top 28px
 
     &:hover
@@ -90,7 +90,7 @@
     //     visibility visible
     //     opacity 1
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         &:hover ~ .lang-selection__popup-1
             left 0
             top 80px
@@ -112,7 +112,7 @@
     &.is-active
         left 100px
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         left 0
         top -100px
         min-height 80px
@@ -161,7 +161,7 @@
     background-color c_white
     transition opacity .4s ease-in
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         left 0
         top 80px
 
@@ -190,7 +190,7 @@
     & ~ .logo__popup.is-active
         left 100px
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         padding-top 0
 
         &:hover ~ .logo__popup
@@ -203,7 +203,7 @@
     width 80px
     margin: 0 auto;
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         height 81px
         margin auto
         padding-left 5px
@@ -222,7 +222,7 @@
     background-color c_white
     transition left .4s ease-in
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         left -100%
         top -100px
         transition top .4s ease-in
@@ -271,7 +271,7 @@
     // &:focus ~ .sign-in__popup
         left 100px
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         padding-top 48px
         background-position 50% 35%
 
@@ -325,11 +325,15 @@
     &.is-active
         left 100px
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         top -320px
-        left 0
         bottom auto
-        width 100%
+        left: 0;
+        right: 0;
+        width: 50%;
+        min-width 369px
+        margin-left: auto;
+        margin-right: auto;
         transition left 0s
         transition top .4s ease-in
 
@@ -341,6 +345,12 @@
         &.is-active
             left 0
             top 80px
+
+    @media (max-width: xss)
+        right auto
+        width 100%
+        min-width inherit
+
 
 .sign-in__header
     fontHvLight30_52()
@@ -407,7 +417,7 @@
     text-align center
     text-transform uppercase
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         padding-top 48px
         background-position 50% 35%
 
@@ -427,7 +437,7 @@
     text-align center
     text-transform uppercase
 
-    @media (max-width: 479px)
+    @media (max-width: xs)
         padding-top 48px
         background-position 50% 35%
 
@@ -436,133 +446,144 @@
         color c_contrast
 
 
-/**--------------------------------*\
- * .external-page__additional-info
- **
-\*--------------------------------*/
-.external-page__additional-info
-    // position absolute
-    // z-index 20
-    // right 0
-    // top 0
-    // bottom 0
-    position relative
-    z-index 20
-    width 284px
-    min-width 284px
-    color c_white
-    background-color c_darken-bg
-    box-shadow bxsh-default
-
-    @media (max-width: 479px)
-        width 100%
- 
-.info-additional__header
-    min-height 327px
-    padding-top 196px
-    padding-left 34px
-    padding-right 33px
-    fontHvMedium18_24()
-    color c_white
-    background-color c_darken-bg
-    background-image url(../images/bg-info.png)
-    background-repeat no-repeat
-    background-position center 68px
-    background-size 105px 105px
-    text-align center
-
-.info-additional__promo-banner
-    position relative
-    min-height 100px
-    padding-top 18px
-    padding-right 54px
-    padding-left 54px
-    fontHvRoman14_20()
-    color c_white
-    background-color c_contrast
-    text-align center
-
-    &::before
-        position absolute
-        top 15px
-        left 23px
-        display block
-        fontHvThin60()
-        color c_white-transparent-03
-        content '{'
-
-    &::after
-        position absolute
-        top 15px
-        right 23px
-        display block
-        fontHvThin60()
-        color c_white-transparent-03
-        content '}'
-
-/*ul*/.info-additional__for-clients
-    margin 0
-    padding 0
-    list-style-type none
-    background-color c_darker-2-bg
-
-/*li*/.for-clients__item
-    position relative
-
-/*a*/.for-clients__link
-    position relative
-    z-index 20
-    display block
-    padding-top 14px
-    padding-bottom 14px
-    padding-left 58px
-    fontHvLight16_24()
-    color c_promo-dull
-    background-color c_darker-2-bg
-    box-shadow inset 0 2px 5px rgba(0, 0, 0, .28)
-    transition background-color .4s, color .4s
-
-    &:hover
-    &:focus
-        color c_white
-        background-color c_promo-dark
-        text-decoration none
-
-    &:active
-        color c_white-darken
-        background-color c_promo-dark
-        text-decoration none
-
-    &:hover + .for-clients__tooltip
-        right 300px
-        opacity 1
-
-.for-clients__tooltip
-    position absolute
-    right -400px
-    top 0
-    min-height 52px
-    min-width 275px
-    padding-top 9px
-    padding-right 20px
-    padding-bottom 9px
-    padding-left 20px
-    border-radius 3px
-    fontHvRoman14_16()
-    color c_white
-    background-color c_contrast-transparent
-    box-shadow 0 0 5px rgba(0, 0, 0, .75)
-    transition right .4s, opacity .4s
-    opacity 0
-
-    &::after
-        position absolute
-        right -18px
-        top 0
-        bottom 0
-        margin auto
-        width 0
-        height 0
-        border 10px solid transparent
-        border-left 8px solid c_contrast-transparent
-        content ''
+// /**--------------------------------*\
+//  * .external-page__additional-info
+//  **
+// \*--------------------------------*/
+// .external-page__additional-info
+//     // position absolute
+//     // z-index 20
+//     // right 0
+//     // top 0
+//     // bottom 0
+//     position relative
+//     z-index 20
+//     width 284px
+//     min-width 284px
+//     color c_white
+//     background-color c_darken-bg
+//     box-shadow bxsh-default
+//
+//     @media (max-width: xs)
+//         width 100%
+//
+// .info-additional__header
+//     min-height 327px
+//     padding-top 196px
+//     padding-left 34px
+//     padding-right 33px
+//     fontHvMedium18_24()
+//     color c_white
+//     background-color c_darken-bg
+//     background-image url(../images/bg-info.png)
+//     background-repeat no-repeat
+//     background-position center 68px
+//     background-size 105px 105px
+//     text-align center
+//
+// .info-additional__promo-banner
+//     position relative
+//     min-height 100px
+//     padding-top 18px
+//     padding-right 54px
+//     padding-left 54px
+//     fontHvRoman14_20()
+//     color c_white
+//     background-color c_contrast
+//     text-align center
+//
+//     @media (max-width: xs) and (min-width: xss)
+//         padding-top 37px
+//
+//     &::before
+//         position absolute
+//         top 15px
+//         left 23px
+//         display block
+//         fontHvThin60()
+//         color c_white-transparent-03
+//         content '{'
+//
+//     &::after
+//         position absolute
+//         top 15px
+//         right 23px
+//         display block
+//         fontHvThin60()
+//         color c_white-transparent-03
+//         content '}'
+//
+// /*ul*/.info-additional__for-clients
+//     margin 0
+//     padding 0
+//     list-style-type none
+//     background-color c_darker-2-bg
+//
+// /*li*/.for-clients__item
+//     position relative
+//
+// /*a*/.for-clients__link
+//     position relative
+//     z-index 20
+//     display block
+//     padding-top 14px
+//     padding-bottom 14px
+//     padding-left 58px
+//     fontHvLight16_24()
+//     color c_promo-dull
+//     background-color c_darker-2-bg
+//     box-shadow inset 0 2px 5px rgba(0, 0, 0, .28)
+//     transition background-color .4s, color .4s
+//
+//     &:hover
+//     &:focus
+//         color c_white
+//         background-color c_promo-dark
+//         text-decoration none
+//
+//     &:active
+//         color c_white-darken
+//         background-color c_promo-dark
+//         text-decoration none
+//
+//     &:hover + .for-clients__tooltip
+//         right 300px
+//         opacity 1
+//
+//         @media (max-width: xs)
+//             top -45px
+//             right 0
+//             z-index 30
+//
+// .for-clients__tooltip
+//     position absolute
+//     right -400px
+//     top 0
+//     min-height 52px
+//     min-width 275px
+//     padding-top 9px
+//     padding-right 20px
+//     padding-bottom 9px
+//     padding-left 20px
+//     border-radius 3px
+//     fontHvRoman14_16()
+//     color c_white
+//     background-color c_contrast-transparent
+//     box-shadow 0 0 5px rgba(0, 0, 0, .75)
+//     transition right .4s, opacity .4s
+//     opacity 0
+//
+//     &::after
+//         position absolute
+//         right -18px
+//         top 0
+//         bottom 0
+//         margin auto
+//         width 0
+//         height 0
+//         border 10px solid transparent
+//         border-left 8px solid c_contrast-transparent
+//         content ''
+//
+//         @media (max-width: xs)
+//             display none

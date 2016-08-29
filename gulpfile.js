@@ -264,7 +264,7 @@ var src_js_assets = 'source/assets/scripts/**/*.js',
   src_min_css_assets = 'source/assets/styles/**/*.min.css',
   src_img_assets = 'source/assets/images/**/*',
   src_fonts_assets = 'source/assets/fonts/**/*',
-  src_css_distrs = 'source/assets/distrs/**/!(*\.min).css',
+  src_css_distrs = 'source/distrs/**/!(*\.min).css',
   src_min_css_distrs = 'source/distrs/**/*.min.css',
   src_js_distrs = 'source/distrs/**/*.js';
 

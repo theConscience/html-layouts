@@ -2,7 +2,7 @@
 @import './helpers/_mixins'
 @import './helpers/_block_mixins'
 
-// @media (max-width: 1023px)
+// @media (max-width: lg)
 //     body
 //         flex-direction column
 
@@ -18,7 +18,7 @@
     // padding-left 100px
     background-color c_darker-bg
 
-    @media (max-width: 1023px)
+    @media (max-width: lg)
         flex-direction: column;
 
 /*article*/.enter-content__hotels
@@ -33,27 +33,29 @@
     background-position left top
     background-size auto 100%
 
-    @media (max-width: 1023px)
+    @media (max-width: lg)
         border-bottom 7px solid c_seo
+
+    @media (max-width: xs)
+        padding-left 36px
 
 .hotels-enter__header
 .agents-enter__header
     display flex
     justify-content space-between
+    flex-wrap wrap
     width 45%
     min-width 522px
     margin-bottom 66px
 
-    @media (max-width: 1565px)
-        flex-wrap wrap
+    @media (max-width: xs)
+        width 100%
+        padding-right 40px
 
 .hotels-enter__header > div:nth-child(2)
 .agents-enter__header > div:nth-child(2)
-    padding-left 20px
-
-    @media (max-width: 1565px)
-        padding-top 20px
-        padding-left 0
+    // padding-left 20px
+    margin-top 20px
 
 /*h1*/.hotels-enter__for-hotels
 /*h1*/.hotels-enter__for-representatives
@@ -65,11 +67,25 @@
     text-transform uppercase
 
 .hotels-enter__for-representatives
+    padding-right 20px
+
     @media (max-width: 1140px)
+        max-width 400px
+
+    @media (max-width: xs)
+        max-width none
+
+    @media (max-width: xss)
         max-width 400px
 
 .agents-enter__for-operators
     @media (max-width: 1140px)
+        max-width 285px
+
+    @media (max-width: xs)
+        max-width none
+
+    @media (max-width: xss)
         max-width 285px
 
 /*h1*/.hotels-enter__for-hotels
@@ -101,7 +117,7 @@
     background-size auto 100%
     transition left 1s
 
-    @media (max-width: 1023px)
+    @media (max-width: lg)
         position relative
         top auto
         bottom auto
@@ -109,28 +125,30 @@
         width 100%
         border-bottom 7px solid c_seo
 
+    @media (max-width: xs)
+        padding-left 36px
+
     &:hover
         left 25%
 
-        @media (max-width: 1023px)
+        @media (max-width: lg)
             left 0
 
 .features-list
-    width 699px
+    // width 699px
+    width 48.5%
     padding 0
     margin 0
     list-style-type none
 
-    @media (max-width: 1710px)
-        width 466px
-
-    @media (max-width: 1279px)
-        width 233px
+    @media (max-width: lg)
+        width 100%
 
 .features-list__item
     flex-basis 233px
     max-width 233px
-    padding-top 88px
+    // padding-top 88px
+    padding-top 115px
     padding-left 32px
     padding-right 32px
     box-sizing border-box
@@ -139,13 +157,13 @@
     background-position 30px 20px
     padding-top 115px
 
-    &:nth-child(-n+3)
-        background-position 30px 0px
-        padding-top 88px
-
-        @media (max-width: 1710px)
-            padding-top 115px
-            background-position 30px 20px
+    // &:nth-child(-n+3)
+    //     background-position 30px 0px
+    //     padding-top 88px
+    //
+    //     @media (max-width: 1908px)
+    //         padding-top 115px
+    //         background-position 30px 20px
 
     > h2
         margin 0
@@ -213,3 +231,146 @@
 .features-list__item--statistics-fincenters
     background-image url(../images/bg-stat.png)
     background-size 64px 64px
+
+
+/**--------------------------------*\
+ * .enter-page__additional-info
+ **
+\*--------------------------------*/
+.enter-page__additional-info
+    // position absolute
+    // z-index 20
+    // right 0
+    // top 0
+    // bottom 0
+    position relative
+    z-index 20
+    width 284px
+    min-width 284px
+    color c_white
+    background-color c_darken-bg
+    box-shadow bxsh-default
+
+    @media (max-width: xs)
+        width 100%
+
+.info-additional__header
+    min-height 327px
+    padding-top 196px
+    padding-left 34px
+    padding-right 33px
+    fontHvMedium18_24()
+    color c_white
+    background-color c_darken-bg
+    background-image url(../images/bg-info.png)
+    background-repeat no-repeat
+    background-position center 68px
+    background-size 105px 105px
+    text-align center
+
+.info-additional__promo-banner
+    position relative
+    min-height 100px
+    padding-top 18px
+    padding-right 54px
+    padding-left 54px
+    fontHvRoman14_20()
+    color c_white
+    background-color c_contrast
+    text-align center
+
+    @media (max-width: xs) and (min-width: xss)
+        padding-top 37px
+
+    &::before
+        position absolute
+        top 15px
+        left 23px
+        display block
+        fontHvThin60()
+        color c_white-transparent-03
+        content '{'
+
+    &::after
+        position absolute
+        top 15px
+        right 23px
+        display block
+        fontHvThin60()
+        color c_white-transparent-03
+        content '}'
+
+/*ul*/.info-additional__for-clients
+    margin 0
+    padding 0
+    list-style-type none
+    background-color c_darker-2-bg
+
+/*li*/.for-clients__item
+    position relative
+
+/*a*/.for-clients__link
+    position relative
+    z-index 20
+    display block
+    padding-top 14px
+    padding-bottom 14px
+    padding-left 58px
+    fontHvLight16_24()
+    color c_promo-dull
+    background-color c_darker-2-bg
+    box-shadow inset 0 2px 5px rgba(0, 0, 0, .28)
+    transition background-color .4s, color .4s
+
+    &:hover
+    &:focus
+        color c_white
+        background-color c_promo-dark
+        text-decoration none
+
+    &:active
+        color c_white-darken
+        background-color c_promo-dark
+        text-decoration none
+
+    &:hover + .for-clients__tooltip
+        right 300px
+        opacity 1
+
+        @media (max-width: xs)
+            top -45px
+            right 0
+            z-index 30
+
+.for-clients__tooltip
+    position absolute
+    right -400px
+    top 0
+    min-height 52px
+    min-width 275px
+    padding-top 9px
+    padding-right 20px
+    padding-bottom 9px
+    padding-left 20px
+    border-radius 3px
+    fontHvRoman14_16()
+    color c_white
+    background-color c_contrast-transparent
+    box-shadow 0 0 5px rgba(0, 0, 0, .75)
+    transition right .4s, opacity .4s
+    opacity 0
+
+    &::after
+        position absolute
+        right -18px
+        top 0
+        bottom 0
+        margin auto
+        width 0
+        height 0
+        border 10px solid transparent
+        border-left 8px solid c_contrast-transparent
+        content ''
+
+        @media (max-width: xs)
+            display none
