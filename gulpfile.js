@@ -45,11 +45,17 @@ var knownOptions = {
   ],
   boolean: [  // булевы консольные флаги
     'dev',  // сборка для разработки - с сурсмапами, без комбинации медиа-выражений, без минификации, конкатенация в файл file.css
-    'combineMediaQueries' // принудительно комбинировать медиа-выражения, выключает сурсмапы, т.к. комбинаторы их не поддерживают
+    'combineMediaQueries'//, // принудительно комбинировать медиа-выражения, выключает сурсмапы, т.к. комбинаторы их не поддерживают
+    // 'minification',
+    // 'sourceMaps',
+    // 'production'
   ],
   alias: {  // алиасы, т.е. укороченные имена для флагов
     'dev': 'd',
     'combineMediaQueries': 'cmq',
+    // 'minification': 'min',
+    // 'sourceMaps': 'srcmp',
+    // 'production': 'prod',
     'baseName': 'bn',
     'subName': 'sn',
     'pageName': 'pn',
@@ -58,6 +64,9 @@ var knownOptions = {
   default: {  // дефолтные значения флагов
     'dev': false,
     'cmq': false,
+    // 'min': false,
+    // 'srcmp': false,
+    // 'prod': false,
     'baseName': '',
     'subName': '',
     'pageName': '',
@@ -248,51 +257,56 @@ var src_html_pages = [
   src_html_components = 'source/components/' + (envOptions.componentName || '**') + '/html/*.html';
 
 var src_img_pages = [
-    'source/pages/' + (envOptions.pageName || '**') + '/images/**/*',
+    'source/pages/' + (envOptions.pageName || '**') + '/images/**/*', //'source/pages/' + (envOptions.pageName || '**') + '/images/**/*',
     '!source/pages/layouts/**/*'
   ],
   src_img_bases = [
-    'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/images/**/*'
+    'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/images/**/*' //'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/images/**/*'
   ],
   src_img_subs = [
-    'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/images/**/*'
+    'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/images/**/*' //'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/images/**/*'
   ],
   src_img_components = [
-    'source/components/' + (envOptions.componentName || '**') + '/images/**/*'
+    'source/components/' + (envOptions.componentName || '**') + '/images/**/*' //'source/components/' + (envOptions.componentName || '**') + '/images/**/*'
   ];
 
+// console.log('src_img_pages =', src_img_pages);
+// console.log('src_img_bases =', src_img_bases);
+// console.log('src_img_subs =', src_img_subs);
+// console.log('src_img_components =', src_img_components);
+
 var src_ico_pages = [
-    'source/pages/' + (envOptions.pageName || '**') + '/images/favicon/*.ico',
+    'source/pages/' + (envOptions.pageName || '**') + '/images/favicon/*.ico', //'source/pages/' + (envOptions.pageName || '**') + '/images/favicon/*.ico',
     '!source/pages/layouts/**/*'
   ],
   src_ico_bases = [
-    'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/images/favicon/*.ico'
+    'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/images/favicon/*.ico' //'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/images/favicon/*.ico'
   ],
   src_ico_subs = [
-    'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/images/favicon/*.ico'
+    'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/images/favicon/*.ico' //'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/images/favicon/*.ico'
   ],
   src_ico_components = [
-    'source/components/' + (envOptions.componentName || '**') + '/images/favicon/*.ico'
+    'source/components/' + (envOptions.componentName || '**') + '/images/favicon/*.ico' //'source/components/' + (envOptions.componentName || '**') + '/images/favicon/*.ico'
   ];
 
 var src_jade_pages = [
-    'source/pages/' + (envOptions.pageName || '**') + '/*.jade',
+    'source/pages/' + (envOptions.pageName || '**') + '/*.jade', //'source/pages/' + (envOptions.pageName || '**') + '/*.jade',
     '!source/pages/**/layouts/**/*',  // папка с базовыми лэйаутами
     '!source/pages/**/blocks/**/*',  // папка с блоками jade, используемыми для сборки основного файла
     '!source/pages/**/_*.jade'
   ],
   src_jade_bases = [
-    'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/*.jade',
+    'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/*.jade', //'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/*.jade',
     '!source/pages/layouts/base/**/blocks/**/*',
     '!source/pages/layouts/base/**/_*.jade'
   ],
   src_jade_subs = [
-    'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/*.jade',
+    'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/*.jade', //'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/*.jade',
     '!source/pages/layouts/sub/**/blocks/**/*',
     '!source/pages/layouts/sub/**/_*.jade'
   ],
   src_jade_components = [
-    'source/components/' + (envOptions.componentName || '**') + '/*.jade',
+    'source/components/' + (envOptions.componentName || '**') + '/*.jade', //'source/components/' + (envOptions.componentName || '**') + '/*.jade',
     '!source/components/**/blocks/**/*',
     '!source/components/**/_*.jade'
   ];
@@ -303,18 +317,23 @@ var src_jade_pages = [
 // console.log('src_jade_components =', src_jade_components);
 
 var src_fonts_pages = [
-    'source/pages/' + (envOptions.pageName || '**') + '/fonts/**/*',
+    'source/pages/' + (envOptions.pageName || '**') + '/fonts/**/*', //'source/pages/' + (envOptions.pageName || '**') + '/fonts/**/*',
     '!source/pages/layouts/**/*'
   ],
   src_fonts_bases = [
-    'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/fonts/**/*'
+    'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/fonts/**/*' //'source/pages/layouts/base/' + (envOptions.baseName || '**') + '/fonts/**/*'
   ],
   src_fonts_subs = [
-    'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/fonts/**/*'
+    'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/fonts/**/*' //'source/pages/layouts/sub/' + (envOptions.subName || '**') + '/fonts/**/*'
   ],
   src_fonts_components = [
-    'source/components/' + (envOptions.componentName || '**') + '/fonts/**/*'
+    'source/components/' + (envOptions.componentName || '**') + '/fonts/**/*' //'source/components/' + (envOptions.componentName || '**') + '/fonts/**/*'
   ];
+
+// console.log('src_fonts_pages =', src_fonts_pages);
+// console.log('src_fonts_bases =', src_fonts_bases);
+// console.log('src_fonts_subs =', src_fonts_subs);
+// console.log('src_fonts_components =', src_fonts_components);
 
 
 var src_js_assets = 'source/assets/scripts/**/*.js',
@@ -636,13 +655,14 @@ gulp.task('reloadJs', function() {
 //Reload bases
 gulp.task('reloadJsBases', function() {
   var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
+  console.log('***reloadJsBases*** FOLDERS = getFolders(src_bases) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsBasesSrc(folder))  // src_js_bases
       .pipe(gulpIf(!envOptions.dev, concat('base_js.min.js'), concat('base_js.js')))
       .pipe(smartDestRename({
         folderType: 'base',
-        folder: '/js'
+        destination: '/js'
       }))
       .pipe(gulp.dest(dest_bases))
       .pipe(livereload());
@@ -653,13 +673,14 @@ gulp.task('reloadJsBases', function() {
 //Reload subs
 gulp.task('reloadJsSubs', function() {
   var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
+  console.log('***reloadJsSubs*** FOLDERS = getFolders(src_subs) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsSubsSrc(folder))  // src_js_subs
       .pipe(gulpIf(!envOptions.dev, concat('sub_js.min.js'), concat('sub_js.js')))
       .pipe(smartDestRename({
         folderType: 'sub',
-        folder: '/js'
+        destination: '/js'
       }))
       .pipe(gulp.dest(dest_subs))
       .pipe(livereload());
@@ -670,13 +691,14 @@ gulp.task('reloadJsSubs', function() {
 //Reload pages
 gulp.task('reloadJsPages', function() {
   var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
+  console.log('***reloadJsPages*** FOLDERS = getFolders(src_pages) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsPagesSrc(folder))  // src_js_pages
       .pipe(gulpIf(!envOptions.dev, concat('page_js.min.js'), concat('page_js.js')))
       .pipe(smartDestRename({
         folderType: 'pages',
-        folder: '/js'
+        destination: '/js'
       }))
       .pipe(gulp.dest(dest_pages))
       .pipe(livereload());
@@ -687,13 +709,14 @@ gulp.task('reloadJsPages', function() {
 //Reload components
 gulp.task('reloadJsComponents', function() {
   var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
+  console.log('***reloadJsComponents*** FOLDERS = getFolders(src_components) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsComponentsSrc(folder))  // src_js_components
       .pipe(gulpIf(!envOptions.dev, concat('component_js.min.js'), concat('component_js.js')))
       .pipe(smartDestRename({
         folderType: 'components',
-        folder: '/js'
+        destination: '/js'
       }))
       .pipe(gulp.dest(dest_components))
       .pipe(livereload());
@@ -725,6 +748,7 @@ gulp.task('buildJs', function() {
 //Build bases
 gulp.task('buildJsBases', function() {
   var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
+  console.log('***buildJsBases*** FOLDERS = getFolders(src_bases) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsBasesSrc(folder))  // src_js_bases
@@ -735,7 +759,7 @@ gulp.task('buildJsBases', function() {
       .pipe(gulpIf(!envOptions.dev, concat('base_js.min.js'), concat('base_js.js')))
       .pipe(smartDestRename({
         folderType: 'base',
-        folder: '/js'
+        destination: '/js'
       }))
       .pipe(gulp.dest(dest_bases))
       .pipe(livereload());
@@ -747,6 +771,7 @@ gulp.task('buildJsBases', function() {
 //Build subs
 gulp.task('buildJsSubs', function() {
   var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
+  console.log('***buildJsSubs*** FOLDERS = getFolders(src_subs) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsSubsSrc(folder))  // src_js_subs
@@ -757,7 +782,7 @@ gulp.task('buildJsSubs', function() {
       .pipe(gulpIf(!envOptions.dev, concat('sub_js.min.js'), concat('sub_js.js')))
       .pipe(smartDestRename({
         folderType: 'sub',
-        folder: '/js'
+        destination: '/js'
       }))
       .pipe(gulp.dest(dest_subs))
       .pipe(livereload());
@@ -769,6 +794,7 @@ gulp.task('buildJsSubs', function() {
 //Build pages
 gulp.task('buildJsPages', function() {
   var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
+  console.log('***buildJsPages*** FOLDERS = getFolders(src_pages) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsPagesSrc(folder))  // src_js_pages
@@ -779,7 +805,7 @@ gulp.task('buildJsPages', function() {
       .pipe(gulpIf(!envOptions.dev, concat('page_js.min.js'), concat('page_js.js')))
       .pipe(smartDestRename({
         folderType: 'pages',
-        folder: '/js'
+        destination: '/js'
       }))
       .pipe(gulp.dest(dest_pages))
       .pipe(livereload());
@@ -791,6 +817,7 @@ gulp.task('buildJsPages', function() {
 //Build components
 gulp.task('buildJsComponents', function() {
   var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
+  console.log('***buildJsComponents*** FOLDERS = getFolders(src_components) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsComponentsSrc(folder))  // src_js_components
@@ -801,7 +828,7 @@ gulp.task('buildJsComponents', function() {
       .pipe(gulpIf(!envOptions.dev, concat('component_js.min.js'), concat('component_js.js')))
       .pipe(smartDestRename({
         folderType: 'components',
-        folder: '/js'
+        destination: '/js'
       }))
       .pipe(gulp.dest(dest_components))
       .pipe(livereload());
@@ -826,6 +853,7 @@ gulp.task('reloadCss', function() {
 //Reload bases
 gulp.task('reloadCssBases', function() {
   var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
+  console.log('***reloadCssBases*** FOLDERS = getFolders(src_bases) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssBasesSrc(folder))  // src_css_bases
@@ -834,7 +862,7 @@ gulp.task('reloadCssBases', function() {
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'base',
-        folder: '/css'
+        destination: '/css'
       }))
       .pipe(gulp.dest(dest_bases))
       .pipe(livereload());
@@ -845,6 +873,7 @@ gulp.task('reloadCssBases', function() {
 //Reload subs
 gulp.task('reloadCssSubs', function() {
   var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
+  console.log('***reloadCssSubs*** FOLDERS = getFolders(src_subs) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssSubsSrc(folder))  // src_css_subs
@@ -853,7 +882,7 @@ gulp.task('reloadCssSubs', function() {
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'sub',
-        folder: '/css'
+        destination: '/css'
       }))
       .pipe(gulp.dest(dest_subs))
       .pipe(livereload());
@@ -864,6 +893,7 @@ gulp.task('reloadCssSubs', function() {
 //Reload pages
 gulp.task('reloadCssPages', function() {
   var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
+  console.log('***reloadCssPages*** FOLDERS = getFolders(src_pages) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssPagesSrc(folder))  // src_css_pages
@@ -872,7 +902,7 @@ gulp.task('reloadCssPages', function() {
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'pages',
-        folder: '/css'
+        destination: '/css'
       }))
       .pipe(gulp.dest(dest_pages))
       .pipe(livereload());
@@ -883,6 +913,7 @@ gulp.task('reloadCssPages', function() {
 //Reload components
 gulp.task('reloadCssComponents', function() {
   var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
+  console.log('***reloadCssComponents*** FOLDERS = getFolders(src_components) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssComponentsSrc(folder))  // src_css_components
@@ -891,7 +922,7 @@ gulp.task('reloadCssComponents', function() {
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'components',
-        folder: '/css'
+        destination: '/css'
       }))
       .pipe(gulp.dest(dest_components))
       .pipe(livereload());
@@ -922,6 +953,7 @@ gulp.task('buildCss', function() {
 //Build bases
 gulp.task('buildCssBases', function() {
   var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
+  console.log('***buildCssBases*** FOLDERS = getFolders(src_bases) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssBasesSrc(folder))  // src_css_bases
@@ -938,7 +970,7 @@ gulp.task('buildCssBases', function() {
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'base',
-        folder: '/css'
+        destination: '/css'
       }))
       .pipe(gulp.dest(dest_bases))
       .pipe(livereload());
@@ -950,6 +982,8 @@ gulp.task('buildCssBases', function() {
 //Build subs
 gulp.task('buildCssSubs', function() {
   var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
+  console.log('***buildCssSubs*** FOLDERS = getFolders(src_subs) ===', folders);
+
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssSubsSrc(folder))  // src_css_subs
@@ -966,7 +1000,7 @@ gulp.task('buildCssSubs', function() {
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'sub',
-        folder: '/css'
+        destination: '/css'
       }))
       .pipe(gulp.dest(dest_subs))
       .pipe(livereload());
@@ -978,6 +1012,7 @@ gulp.task('buildCssSubs', function() {
 //Build pages
 gulp.task('buildCssPages', function() {
   var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
+  console.log('***buildCssPages*** FOLDERS = getFolders(src_pages) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssPagesSrc(folder))  // src_css_pages
@@ -994,7 +1029,7 @@ gulp.task('buildCssPages', function() {
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'pages',
-        folder: '/css'
+        destination: '/css'
       }))
       .pipe(gulp.dest(dest_pages))
       .pipe(livereload());
@@ -1006,6 +1041,7 @@ gulp.task('buildCssPages', function() {
 //Build components
 gulp.task('buildCssComponents', function() {
   var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
+  console.log('***buildCssComponents*** FOLDERS = getFolders(src_components) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssComponentsSrc(folder))  // src_css_components
@@ -1022,7 +1058,7 @@ gulp.task('buildCssComponents', function() {
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'components',
-        folder: '/css'
+        destination: '/css'
       }))
       .pipe(gulp.dest(dest_pages))
       .pipe(livereload());
@@ -1072,7 +1108,7 @@ gulp.task('buildStylus', function() {
 //Build bases
 gulp.task('buildStylusBases', function() {
   var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
-  console.log('*** FOLDERS = getFolders(src_bases) ===', folders);
+  console.log('***buildStylusBases*** FOLDERS = getFolders(src_bases) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getStylusBasesSrc(folder))  // src_stylus_bases
@@ -1093,7 +1129,7 @@ gulp.task('buildStylusBases', function() {
         .pipe(gulpIf(!envOptions.dev, concat('base_style.min.css'), concat('base_style.css')))
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
-        folder: '/css',
+        destination: '/css',
         folderType: 'base'
       }))
       .pipe(gulp.dest(dest_bases))
@@ -1106,7 +1142,7 @@ gulp.task('buildStylusBases', function() {
 //Build subs
 gulp.task('buildStylusSubs', function() {
   var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
-  console.log('*** FOLDERS = getFolders(src_subs) ===', folders);
+  console.log('***buildStylusSubs*** FOLDERS = getFolders(src_subs) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getStylusSubsSrc(folder))  // src_stylus_subs
@@ -1123,7 +1159,7 @@ gulp.task('buildStylusSubs', function() {
         .pipe(gulpIf(!envOptions.dev, concat('sub_style.min.css'), concat('sub_style.css')))
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
-        folder: '/css',
+        destination: '/css',
         folderType: 'sub'
       }))
       .pipe(gulp.dest(dest_subs))
@@ -1136,7 +1172,7 @@ gulp.task('buildStylusSubs', function() {
 //Build pages
 gulp.task('buildStylusPages', function() {
   var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
-  console.log('*** FOLDERS = getFolders(src_pages) ===', folders);
+  console.log('***buildStylusPages*** FOLDERS = getFolders(src_pages) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getStylusPagesSrc(folder))  // src_stylus_pages
@@ -1153,7 +1189,7 @@ gulp.task('buildStylusPages', function() {
         .pipe(gulpIf(!envOptions.dev, concat('page_style.min.css'), concat('page_style.css')))
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
-        folder: '/css',
+        destination: '/css',
         folderType: 'pages'
       }))
       .pipe(gulp.dest(dest_pages))
@@ -1166,7 +1202,7 @@ gulp.task('buildStylusPages', function() {
 //Build components
 gulp.task('buildStylusComponents', function() {
   var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
-  console.log('*** FOLDERS = getFolders(src_components) ===', folders);
+  console.log('***buildStylusComponents*** FOLDERS = getFolders(src_components) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getStylusComponentsSrc(folder))  // src_stylus_components
@@ -1183,7 +1219,7 @@ gulp.task('buildStylusComponents', function() {
         .pipe(gulpIf(!envOptions.dev, concat('component_style.min.css'), concat('component_style.css')))
       .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
-        folder: '/css',
+        destination: '/css',
         folderType: 'components'
       }))
       .pipe(gulp.dest(dest_components))
@@ -1212,7 +1248,9 @@ gulp.task('reloadHtmlBases', function() {
       folderType: 'base',
       folder: '/html'
     }))
-    .pipe(gulp.dest(dest_bases))
+    .pipe(gulp.dest(
+      !envOptions.baseName ? dest_bases : dest_bases + '/' + envOptions.baseName + '/html'
+    ))
     .pipe(livereload());
 });
 
@@ -1221,9 +1259,11 @@ gulp.task('reloadHtmlSubs', function() {
   gulp.src(src_html_subs)
     .pipe(smartDestRename({
       folderType: 'sub',
-      folder: '/html'
+      destination: '/html'
     }))
-    .pipe(gulp.dest(dest_subs))
+    .pipe(gulp.dest(
+      !envOptions.subName ? dest_subs : dest_subs + '/' + envOptions.subName + '/html'
+    ))
     .pipe(livereload());
 });
 
@@ -1232,9 +1272,11 @@ gulp.task('reloadHtmlPages', function() {
   gulp.src(src_html_pages)
     .pipe(smartDestRename({
       folderType: 'pages',
-      folder: '/html'
+      destination: '/html'
     }))
-    .pipe(gulp.dest(dest_pages))
+    .pipe(gulp.dest(
+      !envOptions.pageName ? dest_pages : dest_pages + '/' + envOptions.pageName + '/html'
+    ))
     .pipe(livereload());
 });
 
@@ -1243,9 +1285,11 @@ gulp.task('reloadHtmlComponents', function() {
   gulp.src(src_html_components)
     .pipe(smartDestRename({
       folderType: 'components',
-      folder: '/html'
+      destination: '/html'
     }))
-    .pipe(gulp.dest(dest_components))
+    .pipe(gulp.dest(
+      !envOptions.componentName ? dest_components : dest_components + '/' + envOptions.componentName + '/html'
+    ))
     .pipe(livereload());
 });
 
@@ -1291,7 +1335,9 @@ gulp.task('reloadJadeBases', function() {
       locals: YOUR_LOCALS,
       pretty: true
     }))
-    .pipe(gulp.dest(dest_bases))
+    .pipe(gulp.dest(
+      !envOptions.baseName ? dest_bases : dest_bases + '/' + envOptions.baseName
+    ))
     .pipe(livereload());
 });
 //Reload subs
@@ -1304,7 +1350,9 @@ gulp.task('reloadJadeSubs', function() {
       locals: YOUR_LOCALS,
       pretty: true
     }))
-    .pipe(gulp.dest(dest_subs))
+    .pipe(gulp.dest(
+      !envOptions.subName ? dest_subs : dest_subs + '/' + envOptions.subName
+    ))
     .pipe(livereload());
 });
 //Reload pages
@@ -1317,7 +1365,9 @@ gulp.task('reloadJadePages', function() {
       locals: YOUR_LOCALS,
       pretty: true
     }))
-    .pipe(gulp.dest(dest_pages))
+    .pipe(gulp.dest(
+      !envOptions.pageName ? dest_pages : dest_pages + '/' + envOptions.pageName
+    ))
     .pipe(livereload());
 });
 //Reload components
@@ -1327,7 +1377,9 @@ gulp.task('reloadJadeBases', function() {
       locals: YOUR_LOCALS,
       pretty: true
     }))
-    .pipe(gulp.dest(dest_components))
+    .pipe(gulp.dest(
+      !envOptions.componentName ? dest_components : dest_components + '/' + envOptions.componentName
+    ))
     .pipe(livereload());
 });
 
@@ -1351,7 +1403,9 @@ gulp.task('buildJadeBases', function() {
       locals: YOUR_LOCALS,
       pretty: true
     }))
-    .pipe(gulp.dest(dest_bases))
+    .pipe(gulp.dest(
+      !envOptions.baseName ? dest_bases : dest_bases + '/' + envOptions.baseName
+    ))
     .pipe(livereload());
 });
 
@@ -1365,7 +1419,9 @@ gulp.task('buildJadeSubs', function() {
       locals: YOUR_LOCALS,
       pretty: true
     }))
-    .pipe(gulp.dest(dest_subs))
+    .pipe(gulp.dest(
+      !envOptions.subName ? dest_subs : dest_subs + '/' + envOptions.subName
+    ))
     .pipe(livereload());
 });
 
@@ -1379,7 +1435,9 @@ gulp.task('buildJadePages', function() {
       locals: YOUR_LOCALS,
       pretty: true
     }))
-    .pipe(gulp.dest(dest_pages))
+    .pipe(gulp.dest(
+      !envOptions.pageName ? dest_pages : dest_pages + '/' + envOptions.pageName
+    ))
     .pipe(livereload());
 });
 
@@ -1390,7 +1448,9 @@ gulp.task('buildJadeComponents', function() {
       locals: YOUR_LOCALS,
       pretty: true
     }))
-    .pipe(gulp.dest(dest_components))
+    .pipe(gulp.dest(
+      !envOptions.componentName ? dest_components : dest_components + '/' + envOptions.componentName
+    ))
     .pipe(livereload());
 });
 
@@ -1438,9 +1498,11 @@ gulp.task('buildImgBases', function() {
     }))
     .pipe(smartDestRename({
       folderType: 'base',
-      folder: '/images'
+      destination: '/images'
     }))
-    .pipe(gulp.dest(dest_bases))
+    .pipe(gulp.dest(
+      !envOptions.baseName ? dest_bases : dest_bases + '/' + envOptions.baseName + '/images'
+    ))
     .pipe(livereload());
 });
 
@@ -1456,9 +1518,11 @@ gulp.task('buildImgSubs', function() {
     }))
     .pipe(smartDestRename({
       folderType: 'sub',
-      folder: '/images'
+      destination: '/images'
     }))
-    .pipe(gulp.dest(dest_subs))
+    .pipe(gulp.dest(
+      !envOptions.subName ? dest_subs : dest_subs + '/' + envOptions.subName + '/images'
+    ))
     .pipe(livereload());
 });
 
@@ -1474,9 +1538,11 @@ gulp.task('buildImgPages', function() {
     }))
     .pipe(smartDestRename({
       folderType: 'pages',
-      folder: '/images'
+      destination: '/images'
     }))
-    .pipe(gulp.dest(dest_pages))
+    .pipe(gulp.dest(
+      !envOptions.pageName ? dest_pages : dest_pages + '/' + envOptions.pageName + '/images'
+    ))
     .pipe(livereload());
 });
 
@@ -1492,9 +1558,11 @@ gulp.task('buildImgComponents', function() {
     }))
     .pipe(smartDestRename({
       folderType: 'components',
-      folder: '/images'
+      destination: '/images'
     }))
-    .pipe(gulp.dest(dest_components))
+    .pipe(gulp.dest(
+      !envOptions.componentName ? dest_components : dest_components + '/' + envOptions.componentName + '/images'
+    ))
     .pipe(livereload());
 });
 
@@ -1538,9 +1606,11 @@ gulp.task('buildFontsBases', function() {
   gulp.src(src_fonts_bases)
     .pipe(smartDestRename({
       folderType: 'base',
-      folder: '/fonts'
+      destination: '/fonts'
     }))
-    .pipe(gulp.dest(dest_bases))
+    .pipe(gulp.dest(
+      !envOptions.baseName ? dest_bases : dest_bases + '/' + envOptions.baseName + '/fonts'
+    ))
     .pipe(livereload());
 });
 
@@ -1549,9 +1619,11 @@ gulp.task('buildFontsSubs', function() {
   gulp.src(src_fonts_subs)
     .pipe(smartDestRename({
       folderType: 'sub',
-      folder: '/fonts'
+      destination: '/fonts'
     }))
-    .pipe(gulp.dest(dest_subs))
+    .pipe(gulp.dest(
+      !envOptions.subName ? dest_subs : dest_subs + '/' + envOptions.subName + '/fonts'
+    ))
     .pipe(livereload());
 });
 
@@ -1560,9 +1632,11 @@ gulp.task('buildFontsPages', function() {
   gulp.src(src_fonts_pages)
     .pipe(smartDestRename({
       folderType: 'pages',
-      folder: '/fonts'
+      destination: '/fonts'
     }))
-    .pipe(gulp.dest(dest_pages))
+    .pipe(gulp.dest(
+      !envOptions.pageName ? dest_pages : dest_pages + '/' + envOptions.pageName + '/fonts'
+    ))
     .pipe(livereload());
 });
 
@@ -1571,9 +1645,11 @@ gulp.task('buildFontsComponents', function() {
   gulp.src(src_fonts_components)
     .pipe(smartDestRename({
       folderType: 'components',
-      folder: '/fonts'
+      destination: '/fonts'
     }))
-    .pipe(gulp.dest(dest_components))
+    .pipe(gulp.dest(
+      !envOptions.componentName ? dest_components : dest_components + '/' + envOptions.componentName + '/fonts'
+    ))
     .pipe(livereload());
 });
 

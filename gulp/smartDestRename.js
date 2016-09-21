@@ -110,8 +110,9 @@ var getUniqueFolders = function(oldPath, newPath) {
 
 
 var smartDestRename = function(options) {  // works with gulp-concat[refactored] and gulp-sourcemaps[refactored]
-  var destination = options.folder;
+  var destination = options.destination;
   var folderType = options.folderType;
+  // var directName = options.directName;
 
   return through.obj(function renameFolderAsFile(file, enc, cb) {
     gutil.log('file.path', gutil.colors.underline.cyan(file.path));
@@ -130,6 +131,7 @@ var smartDestRename = function(options) {  // works with gulp-concat[refactored]
       gutil.log('file.path2', gutil.colors.green(file.path));
     } else {
       gutil.log('No old file path!!!', gutil.colors.bold.red('WOW!'));
+      gutil.log('NO direct folder name!!!', gutil.colors.bold.red('WOW!'));
       gutil.log('file.path', gutil.colors.red(file.path));
       folders = getRightFolders(path.dirname(file.path), folderType, 'head');
       file.path = path.join(folders.join(path.sep), destination, path.basename(file.path));
