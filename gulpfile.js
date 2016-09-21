@@ -2,7 +2,9 @@
 var path = require('path'),
   through = require('through2'),
   runSequence = require('run-sequence'),
-  merge = require('merge-stream');
+  merge = require('merge-stream'),
+  process = require('process'),
+  minimist = require('minimist');
 
 var gulp = require('gulp'),
   livereload = require('gulp-livereload'),
@@ -13,8 +15,11 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   autoprefixer = require('gulp-autoprefixer'),
   combineMq = require('gulp-combine-mq'),
+  gcmq = require('gulp-group-css-media-queries'),
+  cmq = require('gulp-combine-media-queries'),
   gutil = require('gulp-util'),
   tap = require('gulp-tap'),
+  gulpIf = require('gulp-if'),
   sourcemaps = require('gulp-sourcemaps'),
 
   //optional
@@ -29,6 +34,45 @@ var getFolders = require('./gulp/getFolders');
 var harvestBoundedAssets = require('./gulp/harvestBoundedAssets');
 var smartDestRename = require('./gulp/smartDestRename');
 
+var knownOptions = {
+  // закомментированные - пока не используются!
+  string: [  // строковые консольные флаги
+    'development',
+    'baseName',
+    'subName',
+    'pageName',
+    'componentName'
+  ],
+  boolean: [  // булевы консольные флаги
+    'dev',  // сборка для разработки - с сурсмапами, без комбинации медиа-выражений, без минификации, конкатенация в файл file.css
+    'combineMediaQueries' // принудительно комбинировать медиа-выражения, выключает сурсмапы, т.к. комбинаторы их не поддерживают
+  ],
+  alias: {  // алиасы, т.е. укороченные имена для флагов
+    'dev': 'd',
+    'combineMediaQueries': 'cmq',
+    'baseName': 'bn',
+    'subName': 'sn',
+    'pageName': 'pn',
+    'componentName': 'cn'
+  },
+  default: {  // дефолтные значения флагов
+    'dev': false,
+    'cmq': false,
+    'baseName': '',
+    'subName': '',
+    'pageName': '',
+    'componentName': ''
+  }
+};
+
+var envOptions = minimist(process.argv.slice(2), knownOptions);
+console.log('envOptions.dev = ' + envOptions.d);
+console.log('envOptions.combineMediaQueries = ' + envOptions.cmq);
+console.log('envOptions.baseName = ' + envOptions.bn);
+console.log('envOptions.subName = ' + envOptions.sn);
+console.log('envOptions.pageName = ' + envOptions.pn);
+console.log('envOptions.componentName = ' + envOptions.cn);
+
 
 /* Sources */
 var src_js = [
@@ -36,7 +80,9 @@ var src_js = [
     '!sources/js/**/jquery-*.min.js',
     '!sources/js/jquery.jscrollpane.min.js',
     '!sources/js/bootstrap.min.js',
-    '!sources/js/bowser.js'
+    '!sources/js/bowser.js',
+    '!sources/js/modernizr-custom.js',
+    '!sources/js/jquery.mCustomScrollbar.concat.min.js'
   ],
   src_css = 'sources/css/**/*.css',
   src_stylus = [
@@ -57,23 +103,25 @@ var src_js = [
   src_fonts = 'sources/fonts/**/*',
   src_material = 'node_modules/material-design-lite/material.min.*';
 
+
+/* Source */
 var src_pages = 'source/pages',
   src_bases = 'source/pages/layouts/base',
   src_subs = 'source/pages/layouts/sub',
   src_components = 'source/components';
 
 var src_js_pages = [
-    'source/pages/**/scripts/*.js',
+    'source/pages/' + envOptions.pageName || '**' + '/scripts/*.js',
     '!source/pages/layouts/**/*'
   ],
   src_js_bases = [
-    'source/pages/layouts/base/**/scripts/*.js'
+    'source/pages/layouts/base/' + envOptions.baseName || '**' + '/scripts/*.js'
   ],
   src_js_subs = [
-    'source/pages/layouts/sub/**/scripts/*.js'
+    'source/pages/layouts/sub/' + envOptions.subName || '**' + '/scripts/*.js'
   ],
   src_js_components = [
-    'source/components/**/scripts/*.js'
+    'source/components/' + envOptions.componentName || '**' + '/scripts/*.js'
   ];
 
 var getJsPagesSrc = function(folder) {
@@ -99,17 +147,17 @@ var getJsPagesSrc = function(folder) {
   };
 
 var src_css_pages = [
-    'source/pages/**/styles/*.css',
+    'source/pages/' + envOptions.pageName || '**' + '/styles/*.css',
     '!source/pages/layouts/**/*'
   ],
   src_css_bases = [
-    'source/pages/layouts/base/**/styles/*.css'
+    'source/pages/layouts/base/' + envOptions.baseName || '**' + '/styles/*.css'
   ],
   src_css_subs = [
-    'source/pages/layouts/sub/**/styles/*.css'
+    'source/pages/layouts/sub/' + envOptions.subName || '**' + '/styles/*.css'
   ],
   src_css_components = [
-    'source/components/**/styles/*.css'
+    'source/components/' + envOptions.componentName || '**' + '/styles/*.css'
   ];
 
 var getCssPagesSrc = function(folder) {
@@ -135,20 +183,20 @@ var getCssPagesSrc = function(folder) {
   };
 
 var src_stylus_pages = [
-    'source/pages/**/styles/*.styl',
+    'source/pages/' + envOptions.pageName || '**' + '/styles/*.styl',
     '!source/pages/layouts/**/*',
     '!source/pages/**/styles/_*.styl'
   ],
   src_stylus_bases = [
-    'source/pages/layouts/base/**/styles/*.styl',
+    'source/pages/layouts/base/' + envOptions.baseName || '**' + '/styles/*.styl',
     '!source/pages/layouts/base/**/styles/_*.styl'
   ],
   src_stylus_subs = [
-    'source/pages/layouts/sub/**/styles/*.styl',
+    'source/pages/layouts/sub/' + envOptions.subName || '**' + '/styles/*.styl',
     '!source/pages/layouts/sub/**/styles/_*.styl'
   ],
   src_stylus_components = [
-    'source/components/**/styles/*.styl',
+    'source/components/' + envOptions.componentName || '**' + '/styles/*.styl',
     '!source/components/**/styles/_*.styl'
   ];
 
@@ -187,75 +235,75 @@ var src_all_stylus_pages = [
   src_all_stylus_components = 'source/components/**/styles/*.styl';
 
 var src_html_pages = [
-    'source/pages/**/html/*.html',
+    'source/pages/' + envOptions.pageName || '**' + '/html/*.html',
     '!source/pages/layouts/**/*'
   ],
-  src_html_bases = 'source/pages/layouts/base/**/html/*.html',
-  src_html_subs = 'source/pages/layouts/sub/**/html/*.html',
-  src_html_components = 'source/components/**/html/*.html';
+  src_html_bases = 'source/pages/layouts/base/' + envOptions.baseName || '**' + '/html/*.html',
+  src_html_subs = 'source/pages/layouts/sub/' + envOptions.subName || '**' + '/html/*.html',
+  src_html_components = 'source/components/' + envOptions.componentName || '**' + '/html/*.html';
 
 var src_img_pages = [
-    'source/pages/**/images/**/*',
+    'source/pages/' + envOptions.pageName || '**' + '/images/**/*',
     '!source/pages/layouts/**/*'
   ],
   src_img_bases = [
-    'source/pages/layouts/base/**/images/**/*'
+    'source/pages/layouts/base/' + envOptions.baseName || '**' + '/images/**/*'
   ],
   src_img_subs = [
-    'source/pages/layouts/sub/**/images/**/*'
+    'source/pages/layouts/sub/' + envOptions.subName || '**' + '/images/**/*'
   ],
   src_img_components = [
-    'source/components/**/images/**/*'
+    'source/components/' + envOptions.componentName || '**' + '/images/**/*'
   ];
 
 var src_ico_pages = [
-    'source/pages/**/images/favicon/*.ico',
+    'source/pages/' + envOptions.pageName || '**' + '/images/favicon/*.ico',
     '!source/pages/layouts/**/*'
   ],
   src_ico_bases = [
-    'source/pages/layouts/base/**/images/favicon/*.ico'
+    'source/pages/layouts/base/' + envOptions.baseName || '**' + '/images/favicon/*.ico'
   ],
   src_ico_subs = [
-    'source/pages/layouts/sub/**/images/favicon/*.ico'
+    'source/pages/layouts/sub/' + envOptions.subName || '**' + '/images/favicon/*.ico'
   ],
   src_ico_components = [
-    'source/components/**/images/favicon/*.ico'
+    'source/components/' + envOptions.componentName || '**' + '/images/favicon/*.ico'
   ];
 
 var src_jade_pages = [
-    'source/pages/**/*.jade',
+    'source/pages/' + envOptions.pageName || '**' + '/*.jade',
     '!source/pages/**/layouts/**/*',  // папка с базовыми лэйаутами
     '!source/pages/**/blocks/**/*',  // папка с блоками jade, используемыми для сборки основного файла
     '!source/pages/**/_*.jade'
   ],
   src_jade_bases = [
-    'source/pages/layouts/base/**/*.jade',
+    'source/pages/layouts/base/' + envOptions.baseName || '**' + '/*.jade',
     '!source/pages/layouts/base/**/blocks/**/*',
     '!source/pages/layouts/base/**/_*.jade'
   ],
   src_jade_subs = [
-    'source/pages/layouts/sub/**/*.jade',
+    'source/pages/layouts/sub/' + envOptions.subName || '**' + '/*.jade',
     '!source/pages/layouts/sub/**/blocks/**/*',
     '!source/pages/layouts/sub/**/_*.jade'
   ],
   src_jade_components = [
-    'source/components/**/*.jade',
+    'source/components/' + envOptions.componentName || '**' + '/*.jade',
     '!source/components/**/blocks/**/*',
     '!source/components/**/_*.jade'
   ];
 
 var src_fonts_pages = [
-    'source/pages/**/fonts/**/*',
+    'source/pages/' + envOptions.pageName || '**' + '/fonts/**/*',
     '!source/pages/layouts/**/*'
   ],
   src_fonts_bases = [
-    'source/pages/layouts/base/**/fonts/**/*'
+    'source/pages/layouts/base/' + envOptions.baseName || '**' + '/fonts/**/*'
   ],
   src_fonts_subs = [
-    'source/pages/layouts/sub/**/fonts/**/*'
+    'source/pages/layouts/sub/' + envOptions.subName || '**' + '/fonts/**/*'
   ],
   src_fonts_components = [
-    'source/components/**/fonts/**/*'
+    'source/components/' + envOptions.componentName || '**' + '/fonts/**/*'
   ];
 
 
@@ -268,10 +316,13 @@ var src_js_assets = 'source/assets/scripts/**/*.js',
   src_min_css_distrs = 'source/distrs/**/*.min.css',
   src_js_distrs = 'source/distrs/**/*.js';
 
+
 /* Destination folder */
 var DEST = 'build/';
 var dest_html = DEST + ''; // '';
 
+
+/* Generated Destination folder */
 var GENERATED_DEST = 'generated_content/';
 var dest_pages = GENERATED_DEST + 'pages';
 var dest_bases = GENERATED_DEST + 'base_layouts';
@@ -279,6 +330,7 @@ var dest_subs = GENERATED_DEST + 'sub_layouts';
 var dest_components = GENERATED_DEST + 'components';
 var dest_assets = GENERATED_DEST + 'assets';
 var dest_distrs = GENERATED_DEST + 'distrs';
+
 
 /* Other */
 var YOUR_LOCALS = {}; //for jade
@@ -566,18 +618,18 @@ gulp.task('buildAssetsDistrsMinCss', function() {
 //Reload
 gulp.task('reloadJs', function() {
   gulp.src(src_js)
-    .pipe(concat('js.min.js'))
+    .pipe(gulpIf(!envOptions.dev, concat('js.min.js'), concat('js.js')))
     .pipe(gulp.dest(DEST + 'js'))
     .pipe(livereload());
 });
 
 //Reload bases
 gulp.task('reloadJsBases', function() {
-  var folders = getFolders(src_bases);
+  var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsBasesSrc(folder))  // src_js_bases
-      .pipe(concat('base_js.min.js'))
+      .pipe(gulpIf(!envOptions.dev, concat('base_js.min.js'), concat('base_js.js')))
       .pipe(smartDestRename({
         folderType: 'base',
         folder: '/js'
@@ -590,11 +642,11 @@ gulp.task('reloadJsBases', function() {
 });
 //Reload subs
 gulp.task('reloadJsSubs', function() {
-  var folders = getFolders(src_subs);
+  var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsSubsSrc(folder))  // src_js_subs
-      .pipe(concat('sub_js.min.js'))
+      .pipe(gulpIf(!envOptions.dev, concat('sub_js.min.js'), concat('sub_js.js')))
       .pipe(smartDestRename({
         folderType: 'sub',
         folder: '/js'
@@ -607,11 +659,11 @@ gulp.task('reloadJsSubs', function() {
 });
 //Reload pages
 gulp.task('reloadJsPages', function() {
-  var folders = getFolders(src_pages);
+  var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsPagesSrc(folder))  // src_js_pages
-      .pipe(concat('page_js.min.js'))
+      .pipe(gulpIf(!envOptions.dev, concat('page_js.min.js'), concat('page_js.js')))
       .pipe(smartDestRename({
         folderType: 'pages',
         folder: '/js'
@@ -624,11 +676,11 @@ gulp.task('reloadJsPages', function() {
 });
 //Reload components
 gulp.task('reloadJsComponents', function() {
-  var folders = getFolders(src_components);
+  var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsComponentsSrc(folder))  // src_js_components
-      .pipe(concat('component_js.min.js'))
+      .pipe(gulpIf(!envOptions.dev, concat('component_js.min.js'), concat('component_js.js')))
       .pipe(smartDestRename({
         folderType: 'components',
         folder: '/js'
@@ -645,11 +697,16 @@ gulp.task('reloadJsComponents', function() {
 //Build
 gulp.task('buildJs', function() {
   gulp.src(src_js)
-    .pipe(jsmin())
-    .pipe(rename({
+    // .pipe(jsmin())
+    // .pipe(rename({
+    //   suffix: '.min'
+    // }))
+    // .pipe(concat('js.min.js'))
+    .pipe(gulpIf(!envOptions.dev, jsmin()))
+    .pipe(gulpIf(!envOptions.dev, rename({
       suffix: '.min'
-    }))
-    .pipe(concat('js.min.js'))
+    })))
+    .pipe(gulpIf(!envOptions.dev, concat('js.min.js'), concat('js.js')))
     .pipe(gulp.dest(DEST + 'js'))
     .pipe(livereload());
 });
@@ -657,15 +714,15 @@ gulp.task('buildJs', function() {
 
 //Build bases
 gulp.task('buildJsBases', function() {
-  var folders = getFolders(src_bases);
+  var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsBasesSrc(folder))  // src_js_bases
-      .pipe(jsmin())
-      .pipe(rename({
+      .pipe(gulpIf(!envOptions.dev, jsmin()))
+      .pipe(gulpIf(!envOptions.dev, rename({
         suffix: '.min'
-      }))
-      .pipe(concat('base_js.min.js'))
+      })))
+      .pipe(gulpIf(!envOptions.dev, concat('base_js.min.js'), concat('base_js.js')))
       .pipe(smartDestRename({
         folderType: 'base',
         folder: '/js'
@@ -679,15 +736,15 @@ gulp.task('buildJsBases', function() {
 
 //Build subs
 gulp.task('buildJsSubs', function() {
-  var folders = getFolders(src_subs);
+  var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsSubsSrc(folder))  // src_js_subs
-      .pipe(jsmin())
-      .pipe(rename({
+      .pipe(gulpIf(!envOptions.dev, jsmin()))
+      .pipe(gulpIf(!envOptions.dev, rename({
         suffix: '.min'
-      }))
-      .pipe(concat('sub_js.min.js'))
+      })))
+      .pipe(gulpIf(!envOptions.dev, concat('sub_js.min.js'), concat('sub_js.js')))
       .pipe(smartDestRename({
         folderType: 'sub',
         folder: '/js'
@@ -701,15 +758,15 @@ gulp.task('buildJsSubs', function() {
 
 //Build pages
 gulp.task('buildJsPages', function() {
-  var folders = getFolders(src_pages);
+  var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getJsPagesSrc(folder))  // src_js_pages
-      .pipe(jsmin())
-      .pipe(rename({
+      .pipe(gulpIf(!envOptions.dev, jsmin()))
+      .pipe(gulpIf(!envOptions.dev, rename({
         suffix: '.min'
-      }))
-      .pipe(concat('page_js.min.js'))
+      })))
+      .pipe(gulpIf(!envOptions.dev, concat('page_js.min.js'), concat('page_js.js')))
       .pipe(smartDestRename({
         folderType: 'pages',
         folder: '/js'
@@ -723,15 +780,15 @@ gulp.task('buildJsPages', function() {
 
 //Build components
 gulp.task('buildJsComponents', function() {
-  var folders = getFolders(src_components);
+  var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
 
   var tasks = folders.map(function(folder) {
-    return gulp.src(getJsComponentsSrc(folder))  // src_js_pages
-      .pipe(jsmin())
-      .pipe(rename({
+    return gulp.src(getJsComponentsSrc(folder))  // src_js_components
+      .pipe(gulpIf(!envOptions.dev, jsmin()))
+      .pipe(gulpIf(!envOptions.dev, rename({
         suffix: '.min'
-      }))
-      .pipe(concat('component_js.min.js'))
+      })))
+      .pipe(gulpIf(!envOptions.dev, concat('component_js.min.js'), concat('component_js.js')))
       .pipe(smartDestRename({
         folderType: 'components',
         folder: '/js'
@@ -749,22 +806,22 @@ gulp.task('buildJsComponents', function() {
 //Reload
 gulp.task('reloadCss', function() {
   gulp.src(src_css)
-    .pipe(sourcemaps.init())
-      .pipe(concat('css.min.css'))
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpIf(!envOptions.dev, sourcemaps.init()))
+      .pipe(gulpIf(!envOptions.dev, concat('css.min.css'), concat('css.css')))
+    .pipe(gulpIf(!envOptions.dev, sourcemaps.write('.')))
     .pipe(gulp.dest(DEST + 'css'))
     .pipe(livereload());
 });
 
 //Reload bases
 gulp.task('reloadCssBases', function() {
-  var folders = getFolders(src_bases);
+  var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssBasesSrc(folder))  // src_css_bases
-      .pipe(sourcemaps.init())
-        .pipe(concat('base_css.min.css'))
-      .pipe(sourcemaps.write('.'))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
+        .pipe(gulpIf(!envOptions.dev, concat('base_css.min.css'), concat('base_css.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'base',
         folder: '/css'
@@ -777,13 +834,13 @@ gulp.task('reloadCssBases', function() {
 });
 //Reload subs
 gulp.task('reloadCssSubs', function() {
-  var folders = getFolders(src_subs);
+  var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssSubsSrc(folder))  // src_css_subs
-      .pipe(sourcemaps.init())
-        .pipe(concat('sub_css.min.css'))
-      .pipe(sourcemaps.write('.'))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
+        .pipe(gulpIf(!envOptions.dev, concat('sub_css.min.css'), concat('sub_css.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'sub',
         folder: '/css'
@@ -796,13 +853,13 @@ gulp.task('reloadCssSubs', function() {
 });
 //Reload pages
 gulp.task('reloadCssPages', function() {
-  var folders = getFolders(src_pages);
+  var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssPagesSrc(folder))  // src_css_pages
-      .pipe(sourcemaps.init())
-        .pipe(concat('page_css.min.css'))
-      .pipe(sourcemaps.write('.'))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
+        .pipe(gulpIf(!envOptions.dev, concat('page_css.min.css'), concat('page_css.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'pages',
         folder: '/css'
@@ -815,13 +872,13 @@ gulp.task('reloadCssPages', function() {
 });
 //Reload components
 gulp.task('reloadCssComponents', function() {
-  var folders = getFolders(src_components);
+  var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssComponentsSrc(folder))  // src_css_components
-      .pipe(sourcemaps.init())
-        .pipe(concat('component_css.min.css'))
-      .pipe(sourcemaps.write('.'))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
+        .pipe(gulpIf(!envOptions.dev, concat('component_css.min.css'), concat('component_css.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'components',
         folder: '/css'
@@ -837,14 +894,16 @@ gulp.task('reloadCssComponents', function() {
 //Build
 gulp.task('buildCss', function() {
   gulp.src(src_css)
-    .pipe(sourcemaps.init())
+    .pipe(gulpIf(!envOptions.dev, sourcemaps.init()))
       .pipe(autoprefixer({
         browsers: browsers_ver,
         cascade: false
       }))
-      .pipe(cssmin())
-      .pipe(concat('css.min.css'))
-    .pipe(sourcemaps.write('.'))
+      // .pipe(cssmin())
+      // .pipe(concat('css.min.css'))
+      .pipe(gulpIf(!envOptions.dev, cssmin()))
+      .pipe(gulpIf(!envOptions.dev, concat('css.min.css'), concat('css.css')))
+    .pipe(gulpIf(!envOptions.dev, sourcemaps.write('.')))
     .pipe(gulp.dest(DEST + 'css'))
     .pipe(livereload());
 });
@@ -852,18 +911,21 @@ gulp.task('buildCss', function() {
 
 //Build bases
 gulp.task('buildCssBases', function() {
-  var folders = getFolders(src_bases);
+  var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssBasesSrc(folder))  // src_css_bases
-      .pipe(sourcemaps.init())
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
         .pipe(autoprefixer({
           browsers: browsers_ver,
           cascade: false
         }))
-        .pipe(cssmin())
-        .pipe(concat('base_css.min.css'))
-      .pipe(sourcemaps.write('.'))
+        .pipe(gulpIf(!envOptions.dev || envOptions.cmq, combineMq({  //не работает с sourcemaps
+          beautify: true
+        })))
+        .pipe(gulpIf(!envOptions.dev, cssmin()))
+        .pipe(gulpIf(!envOptions.dev, concat('base_css.min.css'), concat('base_css.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'base',
         folder: '/css'
@@ -877,18 +939,21 @@ gulp.task('buildCssBases', function() {
 
 //Build subs
 gulp.task('buildCssSubs', function() {
-  var folders = getFolders(src_subs);
+  var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssSubsSrc(folder))  // src_css_subs
-      .pipe(sourcemaps.init())
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
         .pipe(autoprefixer({
           browsers: browsers_ver,
           cascade: false
         }))
-        .pipe(cssmin())
-        .pipe(concat('sub_css.min.css'))
-      .pipe(sourcemaps.write('.'))
+        .pipe(gulpIf(!envOptions.dev || envOptions.cmq, combineMq({  //не работает с sourcemaps
+          beautify: true
+        })))
+        .pipe(gulpIf(!envOptions.dev, cssmin()))
+        .pipe(gulpIf(!envOptions.dev, concat('sub_css.min.css'), concat('sub_css.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'sub',
         folder: '/css'
@@ -902,18 +967,21 @@ gulp.task('buildCssSubs', function() {
 
 //Build pages
 gulp.task('buildCssPages', function() {
-  var folders = getFolders(src_pages);
+  var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssPagesSrc(folder))  // src_css_pages
-      .pipe(sourcemaps.init())
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
         .pipe(autoprefixer({
           browsers: browsers_ver,
           cascade: false
         }))
-        .pipe(cssmin())
-        .pipe(concat('page_css.min.css'))
-      .pipe(sourcemaps.write('.'))
+        .pipe(gulpIf(!envOptions.dev || envOptions.cmq, combineMq({  //не работает с sourcemaps
+          beautify: true
+        })))
+        .pipe(gulpIf(!envOptions.dev, cssmin()))
+        .pipe(gulpIf(!envOptions.dev, concat('page_css.min.css'), concat('page_css.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'pages',
         folder: '/css'
@@ -927,18 +995,21 @@ gulp.task('buildCssPages', function() {
 
 //Build components
 gulp.task('buildCssComponents', function() {
-  var folders = getFolders(src_components);
+  var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getCssComponentsSrc(folder))  // src_css_components
-      .pipe(sourcemaps.init())
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
         .pipe(autoprefixer({
           browsers: browsers_ver,
           cascade: false
         }))
-        .pipe(cssmin())
-        .pipe(concat('component_css.min.css'))
-      .pipe(sourcemaps.write('.'))
+        .pipe(gulpIf(!envOptions.dev || envOptions.cmq, combineMq({  //не работает с sourcemaps
+          beautify: true
+        })))
+        .pipe(gulpIf(!envOptions.dev, cssmin()))
+        .pipe(gulpIf(!envOptions.dev, concat('component_css.min.css'), concat('component_css.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folderType: 'components',
         folder: '/css'
@@ -969,18 +1040,20 @@ gulp.task('reloadStylusComponents', ['buildStylusComponents']);
 //Build
 gulp.task('buildStylus', function() {
   gulp.src(src_stylus)
-    .pipe(sourcemaps.init())
+    .pipe(gulpIf(!envOptions.dev, sourcemaps.init()))
       .pipe(stylus())
       .pipe(autoprefixer({
         browsers: browsers_ver,
         cascade: false
       }))
-      // .pipe(combineMq({  //не работает с sourcemaps
-      //   beautify: false
-      // }))
-      .pipe(cssnano())
-      .pipe(concat('style.min.css'))
-    .pipe(sourcemaps.write('.'))
+      // .pipe(gulpIf(envOptions.dev, combineMq({  //не работает с sourcemaps
+      //   beautify: true
+      // })))
+      .pipe(gulpIf(!envOptions.dev, cssnano()))
+      .pipe(gulpIf(!envOptions.dev, concat('style.min.css'), concat('style.css')))
+      // .pipe(cssnano())
+      // .pipe(concat('style.min.css'))
+    .pipe(gulpIf(!envOptions.dev, sourcemaps.write('.')))
     .pipe(gulp.dest(DEST + 'css'))
     .pipe(livereload());
 });
@@ -988,26 +1061,27 @@ gulp.task('buildStylus', function() {
 
 //Build bases
 gulp.task('buildStylusBases', function() {
-  var folders = getFolders(src_bases);
+  var folders = envOptions.baseName ? [envOptions.baseName] : getFolders(src_bases);
+  console.log('*** FOLDERS = getFolders(src_bases) ===', folders);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getStylusBasesSrc(folder))  // src_stylus_bases
-      .pipe(sourcemaps.init())
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
         .pipe(stylus())
         .pipe(autoprefixer({
           browsers: browsers_ver,
           cascade: false
         }))
-        // .pipe(combineMq({  //не работает с sourcemaps
-        //   beautify: false
-        // }))
-        .pipe(cssnano())
+        .pipe(gulpIf(!envOptions.dev || envOptions.cmq, combineMq({  //не работает с sourcemaps
+          beautify: true
+        })))
+        .pipe(gulpIf(!envOptions.dev, cssnano()))
         // .pipe(smartDestRename({
         //   folder: '/css',
         //   folderType: 'base'
         // }))
-        .pipe(concat('base_style.min.css'))
-      .pipe(sourcemaps.write('.'))
+        .pipe(gulpIf(!envOptions.dev, concat('base_style.min.css'), concat('base_style.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folder: '/css',
         folderType: 'base'
@@ -1021,22 +1095,22 @@ gulp.task('buildStylusBases', function() {
 
 //Build subs
 gulp.task('buildStylusSubs', function() {
-  var folders = getFolders(src_subs);
+  var folders = envOptions.subName ? [envOptions.subName] : getFolders(src_subs);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getStylusSubsSrc(folder))  // src_stylus_subs
-      .pipe(sourcemaps.init())
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
         .pipe(stylus())
         .pipe(autoprefixer({
           browsers: browsers_ver,
           cascade: false
         }))
-        // .pipe(combineMq({  //не работает с sourcemaps
-        //   beautify: false
-        // }))
-        .pipe(cssnano())
-        .pipe(concat('sub_style.min.css'))
-      .pipe(sourcemaps.write('.'))
+        .pipe(gulpIf(!envOptions.dev || envOptions.cmq, combineMq({  //не работает с sourcemaps
+          beautify: true
+        })))
+        .pipe(gulpIf(!envOptions.dev, cssnano()))
+        .pipe(gulpIf(!envOptions.dev, concat('sub_style.min.css'), concat('sub_style.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folder: '/css',
         folderType: 'sub'
@@ -1050,22 +1124,22 @@ gulp.task('buildStylusSubs', function() {
 
 //Build pages
 gulp.task('buildStylusPages', function() {
-  var folders = getFolders(src_pages);
+  var folders = envOptions.pageName ? [envOptions.pageName] : getFolders(src_pages);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getStylusPagesSrc(folder))  // src_stylus_pages
-      .pipe(sourcemaps.init())
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
         .pipe(stylus())
         .pipe(autoprefixer({
           browsers: browsers_ver,
           cascade: false
         }))
-        // .pipe(combineMq({  //не работает с sourcemaps
-        //   beautify: false
-        // }))
-        .pipe(cssnano())
-        .pipe(concat('page_style.min.css'))
-      .pipe(sourcemaps.write('.'))
+        .pipe(gulpIf(!envOptions.dev || envOptions.cmq, combineMq({  //не работает с sourcemaps
+          beautify: true
+        })))
+        .pipe(gulpIf(!envOptions.dev, cssnano()))
+        .pipe(gulpIf(!envOptions.dev, concat('page_style.min.css'), concat('page_style.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folder: '/css',
         folderType: 'pages'
@@ -1079,22 +1153,22 @@ gulp.task('buildStylusPages', function() {
 
 //Build components
 gulp.task('buildStylusComponents', function() {
-  var folders = getFolders(src_components);
+  var folders = envOptions.componentName ? [envOptions.componentName] : getFolders(src_components);
 
   var tasks = folders.map(function(folder) {
     return gulp.src(getStylusComponentsSrc(folder))  // src_stylus_components
-      .pipe(sourcemaps.init())
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.init()))
         .pipe(stylus())
         .pipe(autoprefixer({
           browsers: browsers_ver,
           cascade: false
         }))
-        // .pipe(combineMq({  //не работает с sourcemaps
-        //   beautify: false
-        // }))
-        .pipe(cssnano())
-        .pipe(concat('component_style.min.css'))
-      .pipe(sourcemaps.write('.'))
+        .pipe(gulpIf(!envOptions.dev || envOptions.cmq, combineMq({  //не работает с sourcemaps
+          beautify: true
+        })))
+        .pipe(gulpIf(!envOptions.dev, cssnano()))
+        .pipe(gulpIf(!envOptions.dev, concat('component_style.min.css'), concat('component_style.css')))
+      .pipe(gulpIf(envOptions.dev && !envOptions.cmq, sourcemaps.write('.')))
       .pipe(smartDestRename({
         folder: '/css',
         folderType: 'components'

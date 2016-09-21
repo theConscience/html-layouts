@@ -210,7 +210,7 @@
 
     &::-webkit-scrollbar
         width 7px
-        ackground-color #464646
+        background-color #464646
         border-left 3px solid white
         border-right 3px solid white
     &::-webkit-scrollbar-button
@@ -322,6 +322,19 @@
 
 .search-results__filter-table
     cursor pointer
+
+/*a*/.search-results__data-table--sorting
+    color lightest
+    text-decoration none
+
+    &:hover
+    &:focus
+        color lightalternate
+        text-decoration none
+
+    &:active
+        color secondary
+        text-decoration none
 
 .data-table__departure-to
     margin-bottom 5px

@@ -3,7 +3,7 @@
 (function($) {
   $(window).on('load', function() {
     if (!Modernizr.cssscrollbar) {
-      $('.registration-form__inner').mCustomScrollbar(); 
+      $('.registration-form__inner').mCustomScrollbar();
     }
   });
 })(jQuery);

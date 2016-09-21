@@ -28,14 +28,19 @@
         height 80px
 
 .nav-external__list
+    position fixed
     display flex
     flex-direction column
-    width 100% /**/
+    width 100px
+    height 100vh
     padding 0
     margin 0
     list-style-type none
 
     @media (max-width: xs)
+        position static
+        width 100% /**/
+        height auto
         flex-direction row
 
 /*li*/.nav-external__item

@@ -11,8 +11,15 @@ html(lang="en")
         //-     integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7",
         //-     crossorigin="anonymous")
         //- link(rel="stylesheet", href="./css/bootstrap.min.css")
-        link(rel="stylesheet", href="./css/css.min.css")
-        link(rel="stylesheet", href="./css/style.min.css")
+        
+        // modernizr всегда должен быть в HEAD, для нормальной работы на боевом нужно сгенерить сборку полегче - пока используется только Modernizr.cssscrollbar
+        script(src="./js/modernizr-custom.js")
+        link(href="./css/jquery.mCustomScrollbar.min.css" rel="stylesheet")
+        link(href="./css/unihotel-custom-scrollbar.css" rel="stylesheet")
+        //- link(href="./css/css.min.css", rel="stylesheet")
+        //- link(href="./css/style.min.css", rel="stylesheet")
+        link(href="./css/css.css", rel="stylesheet")
+        link(href="./css/style.css", rel="stylesheet")
     body
         .container.container--md.tours-search__container
             header.tours-search__header
@@ -116,7 +123,7 @@ html(lang="en")
                                     //- label.addictive-label(for="filters-results__filter") Фильтр по названию
                                     button.filters-results__show-selected
                                     span.filters-results__selected-count 0
-                                    .filters-results__inner-content.scroll-pane
+                                    .filters-results__inner-content.m-custom-scrollbar
                                         ul.filters-results__list
                                             li
                                                 +wrapped_checkbox('Aqua', 'result_1')
@@ -217,7 +224,8 @@ html(lang="en")
                                 th Перелет
                                 th.th--darken Цена
                                 th.th--darken.text-right.search-results__filter-table
-                                    span.caret
+                                    a.search-results__data-table--sorting.sort-button(href='#')
+                                        span.caret
                         tbody
                             +table_row('10 762 315 ', '10 856 000 ', true)
                             +table_row('110 000 ', '115 000 ', true)
@@ -239,6 +247,8 @@ html(lang="en")
         //-     integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS",
         //-     crossorigin="anonymous")
         script(src="./js/bootstrap.min.js")
-        script(src="./js/jquery.jscrollpane.min.js")
-        script(src="./js/bowser.js")
-        script(src="./js/js.min.js")
+        //- script(src="./js/jquery.jscrollpane.min.js")
+        //- script(src="./js/bowser.js")
+        script(src="./js/jquery.mCustomScrollbar.concat.min.js")
+        //- script(src="./js/js.min.js")
+        script(src="./js/js.js") 

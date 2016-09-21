@@ -1,11 +1,12 @@
 'use strict';
 
-
-$(document).ready(function () {
-  if (!bowser.webkit && !bowser.blink) {
-    $('.scroll-pane').jScrollPane();
-  }
-});
+(function($) {
+  $(window).on('load', function() {
+    if (!Modernizr.cssscrollbar) {
+      $('.m-custom-scrollbar').mCustomScrollbar();
+    }
+  });
+})(jQuery);
 
 
 (function() {
@@ -45,8 +46,6 @@ $(document).ready(function () {
       } else {
         this.setAttribute('data-switch', 'on');
       }
-
-
     };
 
     filterButton.addEventListener('click', onFilterButtonClick);
@@ -67,7 +66,6 @@ $(document).ready(function () {
     };
 
     var onFilterDataChangeCounter = function() {
-
       changeCounter();
     };
 
@@ -77,15 +75,15 @@ $(document).ready(function () {
 
 
   var initBoundSelectsButton = function() {
-    var boundSelectsButton = document.querySelector('.bounded-selects__bound');
+    var boundedSelects = document.querySelectorAll('.bounded-selects');
 
     var onBoundSelectsButtonClick = function(evt) {
       evt.preventDefault();
-
       var boundSelectsButtonState = this.getAttribute('data-switch');
       var firstSelect = this.previousElementSibling;
       var firstSelectValue = firstSelect.value;
       var secondSelect = this.nextElementSibling;
+
       if (boundSelectsButtonState === 'on') {
         this.setAttribute('data-switch', 'off');
         secondSelect.removeAttribute('disabled');
@@ -94,11 +92,26 @@ $(document).ready(function () {
         secondSelect.value = firstSelectValue;
         secondSelect.setAttribute('disabled', 'true');
       }
-
-
     };
 
-    boundSelectsButton.addEventListener('click', onBoundSelectsButtonClick);
+    var onFirstBoundedSelectChange = function() {
+      var firstSelectValue = this.value;
+      var boundButton = this.nextElementSibling;
+      var boundButtonState = boundButton.getAttribute('data-switch');
+      var secondSelect = boundButton.nextElementSibling;
+
+      if (boundButtonState === 'on') {
+        secondSelect.value = firstSelectValue;
+      }
+    };
+
+    for (var i = 0; i < boundedSelects.length; i++) {
+      var boundSelectsButton = boundedSelects[i].querySelector('.bounded-selects__bound');
+      var firstBoundedSelect = boundedSelects[i].querySelectorAll('select')[0];
+
+      boundSelectsButton.addEventListener('click', onBoundSelectsButtonClick);
+      firstBoundedSelect.addEventListener('change', onFirstBoundedSelectChange);
+    }
   };
 
 
